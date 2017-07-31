@@ -32,6 +32,11 @@
   notify: Restart application
   tags: git
 
+- name: Install dependencies (npm)
+  command: npm install
+  args:
+    chdir: "{{ frontend_dir }}"
+
 - name: Delete all .pyc files
   ansible.builtin.command: find . -name '*.pyc' -delete
   args:

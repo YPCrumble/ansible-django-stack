@@ -18,9 +18,15 @@
   when: nginx_status.stat.exists
 
 - name: Install certbot and generate cert
-  ansible.builtin.command: "{{ certbot_script }} certonly --noninteractive --agree-tos --standalone --email {{ certbot_admin_email }} -d {{ inventory_hostname }}"
+  ansible.builtin.command: "{{ certbot_script }} certonly --noninteractive --agree-tos --standalone --email {{ certbot_admin_email }} -d {{ inventory_hostname }} -d www.{{ inventory_hostname }}"
+  when: multiple_sites is not defined
   args:
     creates: "{{ certbot_output_dir }}"
+
+- name: Install certbot and generate cert
+  command: "{{ certbot_script }} certonly --noninteractive --agree-tos --standalone --email {{ certbot_admin_email }} -d {{ item }} -d www.{{ item }}"
+  when: multiple_sites is defined
+  with_items: "{{ multiple_sites }}"
 
 - name: Ensure Nginx is started
   ansible.builtin.service: name=nginx state=started

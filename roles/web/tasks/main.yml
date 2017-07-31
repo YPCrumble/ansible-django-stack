@@ -3,6 +3,8 @@
 - ansible.builtin.import_tasks: install_additional_packages.yml
   tags: packages
 
+- ansible.builtin.import_tasks: setup_known_hosts.yml
+
 - ansible.builtin.import_tasks: create_users_and_groups.yml
 
 - ansible.builtin.import_tasks: set_file_permissions.yml
@@ -12,6 +14,7 @@
   tags: virtualenv
 
 - ansible.builtin.import_tasks: setup_git_repo.yml
+  become: false
   tags: deploy
 
 - ansible.builtin.import_tasks: setup_django_app.yml

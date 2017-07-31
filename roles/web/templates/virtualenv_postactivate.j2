@@ -3,3 +3,6 @@
 {% for variable_name, value in django_environment.items() %}
 export {{ variable_name }}={{ value | quote }}
 {% endfor %}
+{% for variable_name, value in django_environment_extra.items() %}
+export {{ variable_name }}="{{ value }}"
+{% endfor %}

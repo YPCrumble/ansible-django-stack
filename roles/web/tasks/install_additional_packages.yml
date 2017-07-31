@@ -6,8 +6,12 @@
                   state=present
   when: enable_deadsnakes_ppa
 
+- name: "Add node 6 (LTS) to the apt sources list."
+  shell: curl -sL https://deb.nodesource.com/setup_6.x | sudo -E bash -
+
 - name: Install additional packages
   ansible.builtin.apt:
+  apt:
     update_cache: "{{ update_apt_cache }}"
     state: present
     name:
@@ -16,3 +20,30 @@
       - libpq-dev
       - "{{ virtualenv_python_version + '-dev' }}"
       - "{{ virtualenv_python_version + '-distutils' }}"  # Required by Ubuntu 22.04
+      - nodejs
+      - silversearcher-ag
+      - vim
+      - autopostgresqlbackup
+
+- name: Check whether /usr/bin/node exists
+  stat:
+    path: /usr/bin/node
+  register: usr_bin_node_exists
+
+- name: Symlink nodejs to `node`
+  file: src=/usr/bin/nodejs dest=/usr/bin/node state=link
+  when: usr_bin_node_exists.stat.exists == False
+
+- name: Check whether /usr/bin/npm exists
+  stat:
+    path: /usr/bin/npm
+  register: usr_bin_npm_exists
+
+- name: Make sure npm is installed
+  apt:
+    name: npm
+    update_cache: "{{ update_apt_cache }}"
+  when: usr_bin_npm_exists.stat.exists == False
+
+- name: Make sure the latest npm is installed
+  command: npm install -g npm

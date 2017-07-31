@@ -6,6 +6,13 @@ recreate_virtualenv: false
 virtualenv_python_version: "{{ base_python_package }}"
 
 
+# SSH settings.
+ssh_known_hosts_command: "ssh-keyscan -H -T 10"
+ssh_known_hosts_file: "/etc/ssh/ssh_known_hosts"
+ssh_known_hosts:
+  - github.com
+
+
 # Application settings.
 virtualenv_path: "/webapps/{{ application_name }}"
 project_path: "{{ virtualenv_path }}/{{ project_name }}"
@@ -13,6 +20,7 @@ application_log_dir: "{{ virtualenv_path }}/logs"
 application_log_file: "{{ application_log_dir }}/gunicorn_supervisor.log"
 requirements_file: "{{ project_path }}/requirements.txt"
 pip_use_upgrade_flag: false
+frontend_dir: "{{ project_path }}/frontend/"
 
 
 # Gunicorn settings.
@@ -21,8 +29,11 @@ gunicorn_group: webapps
 
 
 # Nginx settings.
-nginx_static_dir: "{{ virtualenv_path }}/static/"
-nginx_media_dir: "{{ virtualenv_path }}/media/"
+nginx_access_log_file: "{{ application_log_dir }}/nginx_access.log"
+nginx_error_log_file: "{{ application_log_dir }}/nginx_error.log"
+nginx_static_dir: "{{ project_path }}/static/"
+nginx_media_dir: "{{ project_path }}/media/"
+nginx_files_dir: "{{ project_path }}/files/"
 
 
 # Django environment variables.

@@ -27,7 +27,13 @@ test -d $RUNDIR || mkdir -p $RUNDIR
 
 # Programs meant to be run under supervisor should not daemonize themselves
 # (do not use --daemon).
+{% if use_newrelic is defined %}
+export NEW_RELIC_CONFIG_FILE=newrelic.ini
+#exec newrelic-admin run-program gunicorn \
+exec newrelic-admin run-program gunicorn \
+{% else %}
 exec gunicorn \
+{% endif %}
     --name $NAME \
     --workers $NUM_WORKERS \
     --max-requests $MAX_REQUESTS \

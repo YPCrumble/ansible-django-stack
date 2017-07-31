@@ -1,9 +1,13 @@
 ---
 
 nginx_server_name: "{{ inventory_hostname }}"
+nginx_include_favicon: no
+nginx_static_cache_expiry_period: "1y"
+nginx_media_cache_expiry_period: "1y"
+nginx_files_cache_expiry_period: "1y"
 nginx_ssl_dest_dir: /etc/ssl
 nginx_strong_dh_group: true  # Strongly recomended in production. See weakdh.org.
-nginx_use_letsencrypt: false
+nginx_use_letsencrypt: true
 
 # Only used when nginx_use_letsencrypt is set to yes/true. The 'certbot' role will automatically generate these files.
 letsencrypt_dir: "/etc/letsencrypt/live/{{ inventory_hostname }}"

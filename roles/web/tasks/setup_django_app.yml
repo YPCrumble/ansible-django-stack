@@ -24,7 +24,10 @@
     settings: "{{ django_settings_file }}"
   environment: "{{ django_environment }}"
   when: run_django_db_migrations is defined and run_django_db_migrations
-  tags: django.migrate
+  become: false
+  tags:
+    - django.migrate
+    - deploy
 
 - name: Run Django collectstatic
   community.general.django_manage:
@@ -35,4 +38,7 @@
   environment: "{{ django_environment }}"
   when: run_django_collectstatic is defined and run_django_collectstatic
   notify: Restart application
-  tags: django.collectstatic
+  become: false
+  tags:
+    - django.collectstatic
+    - deploy
