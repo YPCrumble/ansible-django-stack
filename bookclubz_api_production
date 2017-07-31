@@ -1,0 +1,9 @@
+[webservers]
+api.bookclubz.com nginx_use_letsencrypt=true
+
+[dbservers]
+api.bookclubz.com
+
+[bookclubz_api_production:children]
+webservers
+dbservers
