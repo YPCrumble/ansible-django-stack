@@ -1,0 +1,9 @@
+[webservers]
+sizeseeker.com nginx_use_letsencrypt=true
+
+[dbservers]
+sizeseeker.com
+
+[sizeseeker_production:children]
+webservers
+dbservers
