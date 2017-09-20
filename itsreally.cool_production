@@ -1,0 +1,12 @@
+[webservers]
+itsreally.cool nginx_use_letsencrypt=true
+
+[dbservers]
+itsreally.cool
+
+[itsreally.cool_production:children]
+webservers
+dbservers
+
+[all:vars]
+multiple_sites=["itsreally.cool", "iama.sexy", "ireally.love", "itsnot.cool", "youarea.sexy", "youaresu.ch"]
