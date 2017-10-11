@@ -1,0 +1,9 @@
+[webservers]
+159.203.125.93 nginx_use_letsencrypt=true
+
+[dbservers]
+159.203.125.93
+
+[bookclubz_jenkins:children]
+webservers
+dbservers
