@@ -25,11 +25,11 @@ cd $DJANGODIR
 RUNDIR=$(dirname $SOCKFILE)
 test -d $RUNDIR || mkdir -p $RUNDIR
 
+
 # Programs meant to be run under supervisor should not daemonize themselves
 # (do not use --daemon).
 {% if use_newrelic is defined %}
 export NEW_RELIC_CONFIG_FILE=newrelic.ini
-#exec newrelic-admin run-program gunicorn \
 exec newrelic-admin run-program gunicorn \
 {% else %}
 exec gunicorn \
@@ -37,6 +37,7 @@ exec gunicorn \
     --name $NAME \
     --workers $NUM_WORKERS \
     --max-requests $MAX_REQUESTS \
+    --worker-class gevent \
     --timeout {{ gunicorn_timeout_seconds|default(30) }} \
     --user $USER --group $GROUP \
     --log-level debug \

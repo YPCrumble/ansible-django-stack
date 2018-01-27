@@ -15,6 +15,7 @@ git_branch: master
 
 # Security settings
 sudo_user_password: "{{ vault_sudo_user_password }}"
+ansible_become_pass: "{{ vault_ansible_become_pass }}"
 
 
 # Database settings.

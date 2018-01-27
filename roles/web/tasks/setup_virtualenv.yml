@@ -32,6 +32,7 @@
     virtualenv: "{{ virtualenv_path }}"
     name:
       - gunicorn
+      - gevent
       - pycurl
 
 - name: Create the Gunicorn script file

@@ -6,12 +6,11 @@
                   state=present
   when: enable_deadsnakes_ppa
 
-- name: "Add node 6 (LTS) to the apt sources list."
-  shell: curl -sL https://deb.nodesource.com/setup_6.x | sudo -E bash -
+- name: "Add node 10 (LTS) to the apt sources list."
+  shell: curl -sL https://deb.nodesource.com/setup_10.x | sudo -E bash -
 
 - name: Install additional packages
   ansible.builtin.apt:
-  apt:
     update_cache: "{{ update_apt_cache }}"
     state: present
     name:
