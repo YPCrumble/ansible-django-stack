@@ -1,0 +1,86 @@
+---
+
+project_name: jetsetoffset
+application_name: "{{ project_name }}"
+enable_deadsnakes_ppa: yes
+virtualenv_python_version: python3.7
+certbot_admin_email: 'ian@jetsetoffset.com'
+
+
+# Git settings.
+git_repo: "{{ vault_git_repo }}"
+setup_git_repo: yes
+git_branch: master
+
+
+# Security settings
+sudo_user_password: "{{ vault_sudo_user_password }}"
+
+
+# Database settings.
+db_user: "{{ application_name }}"
+db_name: "{{ application_name }}"
+db_password: "{{ vault_db_password }}"
+
+
+# Gunicorn settings. For the number of workers, a good rule to follow is
+# 2 x number of CPUs + 1
+gunicorn_num_workers: 3
+
+# Setting this to 1 will restart the Gunicorn process each time
+# you make a request, basically reloading the code. Very handy
+# when developing. Set to 0 for unlimited requests (default).
+gunicorn_max_requests: 100
+
+# Nginx settings
+nginx_cache_static: yes
+nginx_cache_media: yes
+
+
+# RabbitMQ settings.
+rabbitmq_server_name: "{{ inventory_hostname }}"
+
+rabbitmq_admin_user: admin
+rabbitmq_admin_password: password
+
+rabbitmq_application_vhost: "{{ application_name }}"
+rabbitmq_application_user: "{{ application_name }}"
+rabbitmq_application_password: password
+
+
+# Celery settings.
+celery_num_workers: 2
+flower_admin_password: password
+
+
+# Application settings.
+django_settings_file: "settings.staging"
+django_secret_key: "{{ vault_django_secret_key }}"
+
+broker_url: "amqp://{{ rabbitmq_application_user }}:{{ rabbitmq_application_password }}@localhost/{{ rabbitmq_application_vhost }}"
+
+run_django_db_migrations: yes
+run_django_collectstatic: yes
+
+run_hourly_jobs: yes
+run_daily_jobs: no
+run_monthly_jobs: no
+run_jobs_bash_file: "run_jobs.sh"
+
+django_environment_extra:
+
+  SENTRY_DSN: "{{ vault_sentry_dsn }}"
+
+  SIFT_API_KEY: '{{ vault_sift_api_key }}'
+  SIFT_API_SECRET: '{{ vault_sift_api_secret }}'
+
+  GOOGLE_CLIENT_ID: '{{ vault_google_client_id }}'
+  GOOGLE_CLIENT_SECRET: '{{ vault_google_client_secret }}'
+
+  SPARKPOST_API_KEY: "{{ vault_sparkpost_api_key }}"
+  SPARKPOST_WEBHOOK_TOKEN: '{{ vault_sparkpost_webhook_token }}'
+
+  STRIPE_PUBLISHABLE_KEY: '{{ vault_stripe_publishable_key }}'
+  STRIPE_SECRET_KEY: '{{ vault_stripe_secret_key }}'
+  STRIPE_CLIENT_ID: '{{ vault_stripe_client_id }}'
+  STRIPE_CSRF_TOKEN: 'test_stripe_csrf_token'

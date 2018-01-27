@@ -1,0 +1,9 @@
+[webservers]
+staging.jetsetoffset.com nginx_use_letsencrypt=true
+
+[dbservers]
+staging.jetsetoffset.com
+
+[jetsetoffset_staging:children]
+webservers
+dbservers
