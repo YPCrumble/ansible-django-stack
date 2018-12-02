@@ -15,7 +15,7 @@ Ansible Playbook designed for environments running a Django app.  It can install
 - Celery
 - RabbitMQ
 
-Default settings are stored in ```roles/role_name/defaults/main.yml```.  Environment-specific settings are in the ```env_vars``` directory.
+Default settings are stored in ```roles/role_name/defaults/main.yml```.  Environment-specific settings are in the ```group_vars``` directory.
 
 A `certbot` role is also included for automatically generating and renewing trusted SSL certificates with [Let's Encrypt](https://letsencrypt.org/). 
 
@@ -42,7 +42,7 @@ sudo apt-get update
 
 ### Configuring your application
 
-The main settings to change are in the [env_vars/base.yml](env_vars/base.yml) file, where you can configure the location of your Git project, the project name, and the application name which will be used throughout the Ansible configuration. I set some default values based on my open-source app, [YouTube Audio Downloader](https://github.com/jcalazan/youtube-audio-dl).
+The main settings to change are in the group_vars/[environment_name]/vars.yml file, where you can configure the location of your Git project, the project name, and the application name which will be used throughout the Ansible configuration. I set some default values based on my open-source app, [YouTube Audio Downloader](https://github.com/jcalazan/youtube-audio-dl).
 
 Note that the default values in the playbooks assume that your project structure looks something like this:
 
@@ -143,7 +143,7 @@ The security module performs several basic server hardening tasks. Inspired by [
 **Security role configuration**
 
 * Change the `server_user` from `root` to something else in `roles/base/defaults/main.yml`
-* Change the sudo password in `roles/security/defaults/main.yml`
+* Change the sudo password in `group_vars/[environment_name]/vars.yml`
 * Change variables in `./roles/security/vars/` per your desired configuration
 
 **Running the Security role**
@@ -162,9 +162,6 @@ Create an inventory file for the environment, for example:
 
 ```
 # development
-
-[all:vars]
-env=dev
 
 [webservers]
 webserver1.example.com
@@ -188,7 +185,6 @@ A few notes here:
 
 - The `dbservers.yml` playbook will only provision servers in the `[dbservers]` section of the inventory file.
 - The `webservers.yml` playbook will only provision servers in the `[webservers]` section of the inventory file.
-- An inventory var called `env` is also set which applies to `all` hosts in the inventory.  This is used in the playbook to determine which `env_var` file to use.
 - The `-K` flag is for adding the sudo password you created for a new sudoer in the Security role (if applicable)
 
 You can then provision the entire site with this command:

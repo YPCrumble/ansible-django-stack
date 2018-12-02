@@ -1,8 +1,22 @@
 ---
 
+git_repo: https://github.com/jcalazan/youtube-audio-dl.git
+
+project_name: youtube-audio-dl
+application_name: youtubeadl
+
+# Note that this PPA doesn't guarantee timely updates in case of security issues.
+# Simply remove these two vars below if you prefer to use the official PPA and
+# default Python version that came with your Linux distro.
+#
+# More info here: https://launchpad.net/~fkrull/+archive/ubuntu/deadsnakes
+enable_deadsnakes_ppa: yes
+virtualenv_python_version: python3.6
+
+
 # Git settings.
 setup_git_repo: yes
-git_branch: development
+git_branch: master
 
 
 # Database settings.
@@ -19,6 +33,8 @@ gunicorn_num_workers: 3
 # you make a request, basically reloading the code. Very handy
 # when developing. Set to 0 for unlimited requests (default).
 gunicorn_max_requests: 0
+
+gunicorn_timeout_seconds: 300
 
 
 # RabbitMQ settings.
@@ -37,36 +53,40 @@ celery_num_workers: 2
 
 
 # Application settings.
-django_settings_file: "{{ application_name }}.settings.development"
+django_settings_file: "{{ application_name }}.settings.local"
 django_secret_key: "akr2icmg1n8%z^3fe3c+)5d0(t^cy-2_25rrl35a7@!scna^1#"
 
 broker_url: "amqp://{{ rabbitmq_application_user }}:{{ rabbitmq_application_password }}@localhost/{{ rabbitmq_application_vhost }}"
+
+requirements_file: "{{ project_path }}/requirements_local.txt"
 
 run_django_db_migrations: yes
 run_django_collectstatic: yes
 
 
 # Nginx settings.
+nginx_strong_dh_group: no
+
 ssl_crt: |
   -----BEGIN CERTIFICATE-----
-  MIIDOjCCAiKgAwIBAgIBADANBgkqhkiG9w0BAQsFADAaMRgwFgYDVQQDDA9kZXYu
-  ZXhhbXBsZS5jb20wIhgPMTk3MDAxMDEwMDAwMDBaGA85OTk5MTIzMTIzNTk1OVow
-  GjEYMBYGA1UEAwwPZGV2LmV4YW1wbGUuY29tMIIBIjANBgkqhkiG9w0BAQEFAAOC
-  AQ8AMIIBCgKCAQEAuTyvpgw5iC7vHGr9cpCa1yVW3rTc/81PWqMPL3lKmV4IzHd7
-  +50QKOFCQE6nfhYS+jVM/3dk8DQgaaTdo1BVF9kT/p1SQE2aE4AFHfPKXP1M+MFB
-  oqK6uujejns4sItZg5yj6QTyTBNOHkaXeCObYpAnp+HokqT5Nmrr/uzPZc7jNZ41
-  ehM2mL3nJ7Zgl40nQj4UqFLsXmlG4g6DKEKilRIpJClLdRm6lydgdVi2HApE4adk
-  DOcIXXY687Y/LFoPFrgpztWv/O0/oJguV7LHttjS9b6LzjF8k7rWqCT4muHy1fYc
-  JXLIOaUrWEru9FQegppwIo6tQjoZuy09lLOztQIDAQABo4GGMIGDMAkGA1UdEwQC
-  MAAwHQYDVR0OBBYEFG2JDPGRCvuRmxMNQcewxwamyehtMB8GA1UdIwQYMBaAFG2J
-  DPGRCvuRmxMNQcewxwamyehtMBoGA1UdEQQTMBGCD2Rldi5leGFtcGxlLmNvbTAa
-  BgNVHRIEEzARgg9kZXYuZXhhbXBsZS5jb20wDQYJKoZIhvcNAQELBQADggEBAIe2
-  obG3657lBKtQEvRVnhJC8utlNIAo0U3Ys6+jmU87LEijVMVwhZreleLC2jI4DeLe
-  JDf2uenifKQbhMCoWBJvoPxP5QjwpOaKvxuI/+xhSG4pQfBV9kb6mHsYhykY0sX1
-  //JgCoumWwLbLQnB2tXV32Dqm+HUWWXqLS/aenNx0HWJwfFCLHPTTPYRn9ESy+oh
-  7frGtzjIFEx/OV2yQwBXmMxQjhUa82/Od99vEmiLgC4LLqXVtadNnumENMCRbw1P
-  99Z7EbZ9F206VVc8aSCLNhphPAct0wFYTQ59tFGFj637SsrI6LhP/wKXOJS5WLSG
-  sK13YvMF3uL9YD7JNGI=
+  MIIDQjCCAiqgAwIBAgIBADANBgkqhkiG9w0BAQsFADAcMRowGAYDVQQDDBFteS1j
+  b29sLWFwcC5sb2NhbDAiGA8xOTcwMDEwMTAwMDAwMFoYDzk5OTkxMjMxMjM1OTU5
+  WjAcMRowGAYDVQQDDBFteS1jb29sLWFwcC5sb2NhbDCCASIwDQYJKoZIhvcNAQEB
+  BQADggEPADCCAQoCggEBALk8r6YMOYgu7xxq/XKQmtclVt603P/NT1qjDy95Sple
+  CMx3e/udECjhQkBOp34WEvo1TP93ZPA0IGmk3aNQVRfZE/6dUkBNmhOABR3zylz9
+  TPjBQaKiurro3o57OLCLWYOco+kE8kwTTh5Gl3gjm2KQJ6fh6JKk+TZq6/7sz2XO
+  4zWeNXoTNpi95ye2YJeNJ0I+FKhS7F5pRuIOgyhCopUSKSQpS3UZupcnYHVYthwK
+  ROGnZAznCF12OvO2PyxaDxa4Kc7Vr/ztP6CYLleyx7bY0vW+i84xfJO61qgk+Jrh
+  8tX2HCVyyDmlK1hK7vRUHoKacCKOrUI6GbstPZSzs7UCAwEAAaOBijCBhzAJBgNV
+  HRMEAjAAMB0GA1UdDgQWBBRtiQzxkQr7kZsTDUHHsMcGpsnobTAfBgNVHSMEGDAW
+  gBRtiQzxkQr7kZsTDUHHsMcGpsnobTAcBgNVHREEFTATghFteS1jb29sLWFwcC5s
+  b2NhbDAcBgNVHRIEFTATghFteS1jb29sLWFwcC5sb2NhbDANBgkqhkiG9w0BAQsF
+  AAOCAQEADEysIopo/TFj9zL5FpDLr/M71QPu7ZG10ncyIDp8wA8BxwLB2v2qcnfn
+  c4LoAa5Nw9A+WTSJtlEOMBWQCTIALx5dZSfYTcb/p/LIoprmrWx4L0C3TvRH3Vpx
+  INRxt2ynucNqNLKjfmvaZj5Ry1pJw8PE6AD7mWd1fpKUv3ci1cGY9hoCxMMIs8LJ
+  403V27BGsiK3bsUZuU+MWbcwfef8EqxFCjCvpko2qvrnJZ0AP5eDlDjdFgEeFy0c
+  kRKJS02KMbypFWVFMC9ePAWizLMmhj4NHFLzSP2l8WQ4F3A4Ja5QoxTUuIUUibnC
+  A/Bp6E0Njdy8AmCss8vS4GWYxTO4aA==
   -----END CERTIFICATE-----
 
 # This key is for demo purposes only. If you're committing your keys

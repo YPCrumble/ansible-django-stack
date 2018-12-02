@@ -31,7 +31,7 @@ Vagrant.configure(VAGRANTFILE_API_VERSION) do |config|
   # For local development, uncommenting and editing the line below will enable
   # a folder in the host machine containing your local git repo to be synced to
   # the guest machine. Ensure the Ansible playbook variable "setup_git_repo" is
-  # set to "no" (in env_vars/vagrant.yml) when enabling this.
+  # set to "no" (in group_vars/vagrant/vars.yml) when enabling this.
   #config.vm.synced_folder "../../../my-cool-app", "/webapps/mycoolapp/my-cool-app"
 
   # Ansible provisioner.
