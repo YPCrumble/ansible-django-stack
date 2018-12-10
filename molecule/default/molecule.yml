@@ -10,6 +10,8 @@ platforms:
     image: ubuntu
     image_version: xenial
     privileged: true
+    groups:
+      - vagrant
 provisioner:
   name: ansible
   lint:
