@@ -18,7 +18,7 @@ provisioner:
     ANSIBLE_ROLES_PATH: ../../roles/
   inventory:
     links:
-      group_vars: ../../../group_vars/
+      group_vars: ../../group_vars/
 scenario:
   name: default
 verifier:
