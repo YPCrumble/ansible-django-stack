@@ -2,11 +2,11 @@
 
 - name: Provision application web server
   hosts: webservers
-  become: yes
+  become: true
   become_user: root
   remote_user: "{{ server_user }}"
   vars:
-    update_apt_cache: yes
+    update_apt_cache: true
 
   roles:
     - base

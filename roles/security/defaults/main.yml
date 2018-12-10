@@ -5,12 +5,12 @@
 # python -c "from passlib.hash import sha512_crypt; import getpass; print sha512_crypt.encrypt(getpass.getpass())"
 server_user_password: "{{ sudo_user_password }}"
 
-perform_aptitude_dist_upgrade: yes
+perform_aptitude_dist_upgrade: true
 
-force_ssh_authentication: yes
+force_ssh_authentication: true
 
-enable_unattended_upgrades: yes
+enable_unattended_upgrades: true
 
-enable_ufw: yes
+enable_ufw: true
 
-enable_fail2ban: no
+enable_fail2ban: false
