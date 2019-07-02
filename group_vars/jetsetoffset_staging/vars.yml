@@ -10,7 +10,7 @@ certbot_admin_email: 'ian@jetsetoffset.com'
 # Git settings.
 git_repo: "{{ vault_git_repo }}"
 setup_git_repo: yes
-git_branch: master
+git_branch: develop
 
 
 # Security settings
