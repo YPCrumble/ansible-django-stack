@@ -71,7 +71,7 @@ server {
     gzip_comp_level  2;
     gzip_min_length  1000;
     gzip_proxied     expired no-cache no-store private auth;
-    gzip_types       text/plain application/x-javascript text/xml text/css application/xml;
+    gzip_types       text/plain text/javascript application/javascript application/x-javascript text/xml text/css application/xml;
 
     access_log {{ nginx_access_log_file }};
     error_log {{ nginx_error_log_file }};
