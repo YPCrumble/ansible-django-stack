@@ -22,9 +22,6 @@
     - name: Install Python3
       raw: apt-get install python3-minimal
       changed_when: false
-    - name: Install kmod package for IPV6 support
-      raw: apt-get install kmod
-      changed_when: false
 
   roles:
     - security

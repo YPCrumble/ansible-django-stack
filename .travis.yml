@@ -17,4 +17,4 @@ install:
 cache: pip
 
 script:
-  - molecule test
+  - molecule test --debug
