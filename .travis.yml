@@ -9,7 +9,6 @@ services:
 before_install:
   - sudo apt-get -q update
   - sudo DEBIAN_FRONTEND=noninteractive apt-get install -q -y docker-ce
-  - echo '{"ipv6":true, "fixed-cidr-v6":"2001:db8:1::/64"}' | sudo tee /etc/docker/daemon.json
   - sudo service docker restart
   - ssh-keygen -f id_rsa -t rsa -b 4096 -C "your_email@example.com" -N ''
 
