@@ -27,7 +27,7 @@ db_password: "{{ vault_db_password }}"
 # For the number of workers, a good rule to follow is
 # 2 x number of CPUs + 1
 use_newrelic: yes
-gunicorn_num_workers: 3
+gunicorn_num_workers: 5
 
 # Setting this to 1 will restart the Gunicorn process each time
 # you make a request, basically reloading the code. Very handy
