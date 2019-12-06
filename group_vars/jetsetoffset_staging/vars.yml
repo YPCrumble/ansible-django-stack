@@ -89,5 +89,6 @@ django_environment_extra:
   BASIC_AUTH: '{{ vault_fareportal_basic_auth }}'
   FARE_PORTAL_SEARCH_FLIGHT_URL: "https://api-dev.fareportallabs.com/air/api/search/searchflightavailability"
   BASE_URL: "www.onetravel.com"
+  DEEP_LINK_URL: "https://api-dev.fareportallabs.com/air/deeplink.aspx"
   WUID: "{{ vault_fareportal_wuid }}"
   AFFILIATE: "{{ vault_fareportal_affiliateid }}"
