@@ -23,7 +23,7 @@ db_name: "{{ application_name }}"
 db_password: "{{ vault_db_password }}"
 
 
-# Gunicorn settings. 
+# Gunicorn settings.
 # For the number of workers, a good rule to follow is
 # 2 x number of CPUs + 1
 use_newrelic: yes
@@ -79,5 +79,5 @@ django_environment_extra:
 
   SENTRY_DSN: "{{ vault_sentry_dsn }}"
 
-  SKIMLINKS_API_KEY : "{{ vault_skimlinks_api_key }}"
+  SKIMLINKS_API_KEY: "{{ vault_skimlinks_api_key }}"
   SKIMLINKS_BASE_URL: "{{ vault_skimlinks_base_url }}"

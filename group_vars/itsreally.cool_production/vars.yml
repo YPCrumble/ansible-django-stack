@@ -68,4 +68,3 @@ django_environment_extra:
   #AMAZON_SECRET_KEY: "{{ vault_amazon_secret_key }}"
   #AMAZON_ACCESS_KEY: "{{ vault_amazon_access_key }}"
   #AMAZON_ASSOC_TAG: "{{ vault_amazon_assoc_tag }}"
-

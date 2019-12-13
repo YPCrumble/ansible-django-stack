@@ -71,22 +71,22 @@ run_jobs_bash_file: "run_jobs.sh"
 django_environment_extra:
 
   SENTRY_DSN: "{{ vault_sentry_dsn }}"
-  
+
   SIFT_API_KEY: '{{ vault_sift_api_key }}'
   SIFT_API_SECRET: '{{ vault_sift_api_secret }}'
   SIFT_CALLBACK_TOKEN: '{{ vault_sift_callback_token }}'
 
   GOOGLE_CLIENT_ID: '{{ vault_google_client_id }}'
   GOOGLE_CLIENT_SECRET: '{{ vault_google_client_secret }}'
-  
+
   SPARKPOST_API_KEY: "{{ vault_sparkpost_api_key }}"
   SPARKPOST_WEBHOOK_TOKEN: '{{ vault_sparkpost_webhook_token }}'
-  
+
   STRIPE_PUBLISHABLE_KEY: '{{ vault_stripe_publishable_key }}'
   STRIPE_SECRET_KEY: '{{ vault_stripe_secret_key }}'
   STRIPE_CLIENT_ID: '{{ vault_stripe_client_id }}'
   STRIPE_CSRF_TOKEN: '{{ vault_stripe_csrf_token }}'
-  
+
   BASIC_AUTH: '{{ vault_fareportal_basic_auth }}'
   FARE_PORTAL_SEARCH_FLIGHT_URL: "https://api-dev.fareportallabs.com/air/api/search/searchflightavailability"
   BASE_URL: "www.onetravel.com"

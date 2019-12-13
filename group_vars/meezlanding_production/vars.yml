@@ -24,7 +24,7 @@ db_name: "{{ application_name }}"
 db_password: "{{ vault_db_password }}"
 
 
-# Gunicorn settings. 
+# Gunicorn settings.
 # For the number of workers, a good rule to follow is
 # 2 x number of CPUs + 1
 #use_newrelic: yes
@@ -76,10 +76,7 @@ django_environment_extra:
 #   AMAZON_SECRET_KEY: "{{ vault_amazon_secret_key }}"
 #   AMAZON_ACCESS_KEY: "{{ vault_amazon_access_key }}"
 #   AMAZON_ASSOC_TAG: "{{ vault_amazon_assoc_tag }}"
-# 
 #   SPARKPOST_API_KEY: "{{ vault_sparkpost_api_key }}"
-# 
 #   RAVEN_DSN_CONFIG: "{{ vault_raven_dsn_config }}"
-# 
 #   SKIMLINKS_API_KEY : "{{ vault_skimlinks_api_key }}"
 #   SKIMLINKS_BASE_URL: "{{ vault_skimlinks_base_url }}"
