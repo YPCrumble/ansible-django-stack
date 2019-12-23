@@ -86,7 +86,7 @@ django_environment_extra:
   STRIPE_CLIENT_ID: '{{ vault_stripe_client_id }}'
   STRIPE_CSRF_TOKEN: 'test_stripe_csrf_token'
 
-  BASIC_AUTH: '{{ vault_fareportal_basic_auth }}'
+  FARE_PORTAL_BASIC_AUTH: '{{ vault_fareportal_basic_auth }}'
   FARE_PORTAL_SEARCH_FLIGHT_URL: "https://api-dev.fareportallabs.com/air/api/search/searchflightavailability"
   BASE_URL: "www.onetravel.com"
   DEEP_LINK_URL: "https://api-dev.fareportallabs.com/air/deeplink.aspx"
