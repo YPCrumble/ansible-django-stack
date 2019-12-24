@@ -88,4 +88,4 @@ django_environment_extra:
   STRIPE_CSRF_TOKEN: '{{ vault_stripe_csrf_token }}'
 
   FARE_PORTAL_BASIC_AUTH: '{{ vault_fareportal_basic_auth }}'
-  FARE_PORTAL_SEARCH_FLIGHT_URL: "https://api-dev.fareportallabs.com/air/api/search/searchflightavailability"
+  FARE_PORTAL_SEARCH_FLIGHT_URL: "https://fpwebbox.onetravel.com/api/search/SearchFlightAvailability"
