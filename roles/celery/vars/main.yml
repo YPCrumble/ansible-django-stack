@@ -14,3 +14,5 @@ celery_template_file: "{{ celery_application_name }}_start.j2"
 
 celery_log_dir: "{{ virtualenv_path }}/logs"
 celery_log_file: "{{ celery_log_dir }}/{{ celery_application_name }}.log"
+
+flower_log_file: "{{ celery_log_dir }}/flower.log"

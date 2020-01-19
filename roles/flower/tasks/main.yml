@@ -1,0 +1,6 @@
+---
+
+- name: Update htpasswd for flower access.
+  include_role:
+    name: geerlingguy.htpasswd
+  when: use_flower is defined

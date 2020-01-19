@@ -15,6 +15,11 @@
             dest=/etc/supervisor/conf.d/{{ celery_application_name }}.conf
             mode=0644
 
+
+- name: Create the Supervisor config file for flower
+  template: src=supervisor_flower.conf.j2
+            dest=/etc/supervisor/conf.d/flower.conf
+
 - name: Create the log directory for {{ celery_application_name }}
   ansible.builtin.file:
     path: "{{ celery_log_dir }}"
@@ -27,7 +32,12 @@
 - name: Check for an existing celery logfile
   ansible.builtin.stat:
     path: "{{ celery_log_file }}"
-  register: p
+  register: c
+
+- name: Check for an existing flower logfile
+  stat:
+    path: "{{ flower_log_file }}"
+  register: f
 
 - name: Create (or retain) the log file for {{ celery_application_name }}
   # Removing until https://github.com/ansible/ansible/issues/45530 gets resolved.
@@ -42,6 +52,20 @@
     group: "{{ celery_group }}"
     state: '{{ "file" if p.stat.exists else "touch" }}'
     mode: "0644"
+
+- name: Create (or retain) the flower log file
+  # Removing until https://github.com/ansible/ansible/issues/45530 gets resolved.
+  # copy: content=""
+  #       dest={{ celery_log_file }}
+  #       owner={{ celery_user }}
+  #       group={{ celery_group }}
+  #       force=no
+  file:
+    path: "{{ flower_log_file }}"
+    owner: "{{ celery_user }}"
+    group: "{{ celery_group }}"
+    state: '{{ "file" if  f.stat.exists else "touch" }}'
+    mode: '0644'
 
 - name: Re-read the Supervisor config files
   community.general.supervisorctl: name={{ celery_application_name }} state=present

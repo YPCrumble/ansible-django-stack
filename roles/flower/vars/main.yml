@@ -1,0 +1,9 @@
+---
+
+htpasswd_credentials:
+  - path: /etc/nginx/passwdfile
+    name: admin
+    password: "{{ flower_admin_password }}"
+    owner: root
+    group: www-data
+    mode: 'u+rw,g+r'

@@ -1,6 +1,7 @@
 ---
 
 nginx_server_name: "{{ inventory_hostname }}"
+flower_nginx_server_name: "flower.{{ inventory_hostname }}"
 nginx_include_favicon: no
 nginx_static_cache_expiry_period: "1y"
 nginx_media_cache_expiry_period: "1y"

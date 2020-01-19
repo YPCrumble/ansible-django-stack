@@ -13,3 +13,10 @@
             owner={{ celery_user }}
             group={{ celery_group }}
             mode=0755
+
+- name: Create the flower script file
+  template: src=flower_start.j2
+            dest={{ celery_scripts_dir }}/flower_start
+            owner={{ celery_user }}
+            group={{ celery_group }}
+            mode=0755

@@ -29,7 +29,9 @@
     dest: "{{ project_path }}"
     accept_hostkey: true
   when: setup_git_repo is defined and setup_git_repo
-  notify: Restart application
+  notify:
+    - Restart application
+    - Restart {{ celery_application_name }}
   tags: git
 
 - name: Install dependencies (npm)

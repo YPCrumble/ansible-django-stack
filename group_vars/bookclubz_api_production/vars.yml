@@ -52,8 +52,10 @@ rabbitmq_application_password: "{{ vault_rabbitmq_application_password }}"
 
 
 # Celery settings.
-celery_num_workers: 2
-flower_admin_password: password
+celery_num_workers: 4
+use_celery: yes
+use_flower: yes
+flower_admin_password: "{{ vault_flower_admin_password }}"
 
 
 # Application settings.
