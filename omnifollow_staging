@@ -1,0 +1,9 @@
+[webservers]
+staging.omnifollow.com nginx_use_letsencrypt=true
+
+[dbservers]
+staging.omnifollow.com
+
+[omnifollow_staging:children]
+webservers
+dbservers

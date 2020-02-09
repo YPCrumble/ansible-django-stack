@@ -1,0 +1,9 @@
+[webservers]
+omnifollow.com nginx_use_letsencrypt=true
+
+[dbservers]
+omnifollow.com
+
+[omnifollow_production:children]
+dbservers
+webservers
