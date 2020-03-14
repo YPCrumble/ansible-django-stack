@@ -7,11 +7,11 @@
 
 - ansible.builtin.import_tasks: create_users_and_groups.yml
 
-- ansible.builtin.import_tasks: set_file_permissions.yml
-  tags: deploy
-
 - ansible.builtin.import_tasks: setup_virtualenv.yml
   tags: virtualenv
+
+- ansible.builtin.import_tasks: set_file_permissions.yml
+  tags: deploy
 
 - ansible.builtin.import_tasks: setup_git_repo.yml
   become: false

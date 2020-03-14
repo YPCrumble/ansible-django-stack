@@ -15,8 +15,8 @@
     - base
     - certbot
     - rabbitmq
+    - memcached
     - web
     - celery
-    - memcached
     - nginx
     - flower
