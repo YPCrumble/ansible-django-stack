@@ -33,16 +33,18 @@
   file: src=/usr/bin/nodejs dest=/usr/bin/node state=link
   when: usr_bin_node_exists.stat.exists == False
 
-- name: Check whether /usr/bin/npm exists
-  stat:
-    path: /usr/bin/npm
-  register: usr_bin_npm_exists
+- name: Add an Apt signing key, uses whichever key is at the URL
+  apt_key:
+    url: https://dl.yarnpkg.com/debian/pubkey.gpg
+    state: present
 
-- name: Make sure npm is installed
+- name: Add the Yarn repository to the apt sources list
+  apt_repository: repo='deb https://dl.yarnpkg.com/debian/ stable main'
+                  update_cache={{ update_apt_cache }}
+                  state=present
+
+- name: Make sure latest yarn is installed
   apt:
-    name: npm
+    name: yarn
+    state: latest
     update_cache: "{{ update_apt_cache }}"
-  when: usr_bin_npm_exists.stat.exists == False
-
-- name: Make sure the latest npm is installed
-  command: npm install -g npm

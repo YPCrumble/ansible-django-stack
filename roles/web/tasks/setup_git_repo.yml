@@ -34,8 +34,8 @@
     - Restart {{ celery_application_name }}
   tags: git
 
-- name: Install dependencies (npm)
-  command: npm install
+- name: Install dependencies (yarn)
+  command: yarn
   args:
     chdir: "{{ frontend_dir }}"
 
