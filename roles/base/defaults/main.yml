@@ -6,6 +6,6 @@ server_user: "{{ application_name }}"
 
 base_python_package: "{{ ansible_python_interpreter | default('/usr/bin/python') | basename }}"
 
-create_swap_file: false
+create_swap_file: true
 swap_file_path: /swapfile
-swap_file_size_kb: 512
+swap_file_size_kb: 1024  # Note that block size is 1MB so this default will create a 1GB swapfile.
