@@ -9,6 +9,10 @@
 - name: "Add node 10 (LTS) to the apt sources list."
   shell: curl -sL https://deb.nodesource.com/setup_10.x | sudo -E bash -
 
+- name: "Update or add the sentry-cli package."
+  shell: sentry-cli update || curl -sL https://sentry.io/get-cli/ | bash
+  tags: deploy
+
 - name: Install additional packages
   ansible.builtin.apt:
     update_cache: "{{ update_apt_cache }}"
