@@ -69,6 +69,7 @@ run_django_collectstatic: yes
 
 run_hourly_jobs: no
 run_daily_jobs: yes
+run_weekly_jobs: no
 run_monthly_jobs: yes
 run_jobs_bash_file: "run_jobs.sh"
 
