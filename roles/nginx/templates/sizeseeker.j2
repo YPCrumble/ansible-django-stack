@@ -72,8 +72,6 @@ server {
     gzip_proxied     expired no-cache no-store private auth;
     gzip_types       text/plain text/javascript application/javascript application/x-javascript text/xml text/css application/xml;
 
-    access_log {{ nginx_access_log_file }};
-    error_log {{ nginx_error_log_file }};
 
     location /static/ {
         alias   {{ nginx_static_dir }};
