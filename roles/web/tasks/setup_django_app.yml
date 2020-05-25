@@ -60,6 +60,16 @@
   when: run_daily_jobs
   tags: django.cron
 
+- name: Ensure a cron job for running weekly jobs exists
+  cron: name="run weekly jobs"
+        minute="35"
+        hour="9"
+        weekday="1"
+        job="bash {{ project_path }}/bin/{{ run_jobs_bash_file }} weekly"
+        state=present
+  when: run_weekly_jobs
+  tags: django.cron
+
 - name: Ensure a cron job for running monthly jobs exists
   cron: name="run monthly jobs"
         minute="35"
