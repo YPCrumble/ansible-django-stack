@@ -1,0 +1,21 @@
+---
+- name: Destroy
+  hosts: localhost
+  connection: local
+  gather_facts: false
+  no_log: "{{ not lookup('env', 'MOLECULE_DEBUG') | bool }}"
+  vars:
+    molecule_file: "{{ lookup('env', 'MOLECULE_FILE') }}"
+    molecule_ephemeral_directory: "{{ lookup('env', 'MOLECULE_EPHEMERAL_DIRECTORY') }}"
+    molecule_scenario_directory: "{{ lookup('env', 'MOLECULE_SCENARIO_DIRECTORY') }}"
+    molecule_yml: "{{ lookup('file', molecule_file) | molecule_from_yaml }}"
+  tasks:
+    - name: Destroy molecule instance(s)
+      docker_container:
+        name: "{{ item.name }}"
+        state: absent
+        force_kill: "{{ item.force_kill | default(true) }}"
+      register: server
+      with_items: "{{ molecule_yml.platforms }}"
+      async: 7200
+      poll: 0

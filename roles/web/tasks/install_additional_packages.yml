@@ -52,3 +52,12 @@
     name: yarn
     state: latest
     update_cache: "{{ update_apt_cache }}"
+
+- name: Setup LogDNA
+  include_role:
+    name: logdna.logdna
+  vars:
+    conf_key: "{{ logdna_ingestion_key }}"
+    conf_logdir: "{{ application_log_dir }}"
+    # All other configuration parameter specifications
+  when: logdna_ingestion_key is defined and logdna_ingestion_key

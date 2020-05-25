@@ -1,0 +1,24 @@
+---
+
+# Pre-Installation Check:
+- name: Checking OS Family
+  fail: msg="We are not currently supporting {{ansible_os_family}}, sorry!"
+  when: ansible_os_family != "Debian" and ansible_os_family != "RedHat"
+
+- name: Checking Agent Service Parameter
+  fail: msg="Bad Agent Service Parameter; please use as documented!"
+  when: agent_service != "restarted" and agent_service != "started" and agent_service != "stopped"
+
+- debug:
+    msg: "Pre-Installation Check is Done!"
+
+# Installation:
+- include_tasks: ./package/install_{{ansible_os_family.lower()}}.yml
+  when: agent_install
+
+# Configuration:
+- include_tasks: ./configure.yml
+  when: agent_config
+
+# Servicing:
+- include_tasks: ./service/service_{{ansible_os_family.lower()}}.yml

@@ -1,0 +1,17 @@
+---
+# Parameters:
+
+## Configuration:
+conf_key: ""
+conf_config: ""
+conf_logdir: ""
+conf_logfile: ""
+conf_exclude: ""
+conf_exclude_regex: ""
+conf_hostname: ""
+conf_tags: ""
+
+## Agent State:
+agent_install: true
+agent_config: true
+agent_service: started

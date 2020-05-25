@@ -1,0 +1,75 @@
+---
+- name: Create
+  hosts: localhost
+  connection: local
+  gather_facts: false
+  no_log: "{{ not lookup('env', 'MOLECULE_DEBUG') | bool }}"
+  vars:
+    molecule_file: "{{ lookup('env', 'MOLECULE_FILE') }}"
+    molecule_ephemeral_directory: "{{ lookup('env', 'MOLECULE_EPHEMERAL_DIRECTORY') }}"
+    molecule_scenario_directory: "{{ lookup('env', 'MOLECULE_SCENARIO_DIRECTORY') }}"
+    molecule_yml: "{{ lookup('file', molecule_file) | molecule_from_yaml }}"
+  tasks:
+    - name: Log into a Docker registry
+      docker_login:
+        username: "{{ item.registry.credentials.username }}"
+        password: "{{ item.registry.credentials.password }}"
+        email: "{{ item.registry.credentials.email | default(omit) }}"
+        registry: "{{ item.registry.url }}"
+      with_items: "{{ molecule_yml.platforms }}"
+      when:
+        - item.registry is defined
+        - item.registry.credentials is defined
+        - item.registry.credentials.username is defined
+
+    - name: Create Dockerfiles from image names
+      template:
+        src: "{{ molecule_scenario_directory }}/Dockerfile.j2"
+        dest: "{{ molecule_ephemeral_directory }}/Dockerfile_{{ item.image | regex_replace('[^a-zA-Z0-9_]', '_') }}"
+      with_items: "{{ molecule_yml.platforms }}"
+      register: platforms
+
+    - name: Discover local Docker images
+      docker_image_facts:
+        name: "molecule_local/{{ item.item.name }}"
+      with_items: "{{ platforms.results }}"
+      register: docker_images
+
+    - name: Build an Ansible compatible image
+      docker_image:
+        path: "{{ molecule_ephemeral_directory }}"
+        name: "molecule_local/{{ item.item.image }}"
+        dockerfile: "{{ item.item.dockerfile | default(item.invocation.module_args.dest) }}"
+        force: "{{ item.item.force | default(true) }}"
+      with_items: "{{ platforms.results }}"
+      when: platforms.changed or docker_images.results | map(attribute='images') | select('equalto', []) | list | count >= 0
+
+    - name: Create molecule instance(s)
+      docker_container:
+        name: "{{ item.name }}"
+        hostname: "{{ item.name }}"
+        image: "molecule_local/{{ item.image }}"
+        state: started
+        recreate: false
+        log_driver: json-file
+        command: "{{ item.command | default('bash -c \"while true; do sleep 10000; done\"') }}"
+        privileged: "{{ item.privileged | default(omit) }}"
+        volumes: "{{ item.volumes | default(omit) }}"
+        capabilities: "{{ item.capabilities | default(omit) }}"
+        exposed_ports: "{{ item.exposed_ports | default(omit) }}"
+        published_ports: "{{ item.published_ports | default(omit) }}"
+        ulimits: "{{ item.ulimits | default(omit) }}"
+        networks: "{{ item.networks | default(omit) }}"
+        dns_servers: "{{ item.dns_servers | default(omit) }}"
+      register: server
+      with_items: "{{ molecule_yml.platforms }}"
+      async: 7200
+      poll: 0
+
+    - name: Wait for instance(s) creation to complete
+      async_status:
+        jid: "{{ item.ansible_job_id }}"
+      register: docker_jobs
+      until: docker_jobs.finished
+      retries: 300
+      with_items: "{{ server.results }}"

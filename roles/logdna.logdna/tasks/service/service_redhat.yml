@@ -1,0 +1,20 @@
+---
+
+# Starting LogDNA Agent
+- name: Activating LogDNA Agent Service
+  become: true
+  become_method: sudo
+  shell: "chkconfig logdna-agent on"
+
+- name: Start LogDNA agent
+  become: true
+  become_method: sudo
+  service:
+    name: logdna-agent
+    enabled: true
+    state: "{{ agent_service }}"
+  when: (conf_key != "" and agent_service) or agent_service == "stopped"
+
+- debug:
+    msg: "LogDNA Agent has {{ agent_service }}!"
+  when: (conf_key != "" and agent_service) or agent_service == "stopped"

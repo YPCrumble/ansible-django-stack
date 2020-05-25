@@ -1,0 +1,19 @@
+---
+
+# Installation:
+- name: LogDNA Agent Package Public Key
+  apt_key: url=http://repo.logdna.com/logdna.gpg
+
+- name: LogDNA Agent Repository
+  apt_repository:
+    repo: deb http://repo.logdna.com stable main
+
+- name: Install LogDNA Agent
+  apt:
+    state: present
+    name: logdna-agent
+    allow_unauthenticated: true
+    update_cache: true
+
+- debug:
+    msg: "LogDNA Agent Installation is Done!"

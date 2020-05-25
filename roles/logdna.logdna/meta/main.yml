@@ -1,0 +1,35 @@
+---
+galaxy_info:
+  author: Samir Musali
+  description: Ansible Galaxy Role to install and configure LogDNA Agent
+  company: LogDNA
+  issue_tracker_url: https://github.com/logdna/ansible-logdna/issues
+  license: MIT
+  min_ansible_version: 2.1
+  github_branch: master
+
+  platforms:
+    - name: Debian
+      versions:
+        - jessie
+    - name: EL
+      versions:
+        - 6
+        - 7
+    - name: Ubuntu
+      versions:
+        - precise
+        - trusty
+        - xenial
+        - artful
+
+  cloud_platforms: []
+
+  galaxy_tags:
+    - logging
+    - logdna
+    - installer
+    - role
+    - agent
+
+dependencies: []

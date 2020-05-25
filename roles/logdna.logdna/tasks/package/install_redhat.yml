@@ -1,0 +1,12 @@
+---
+
+# Installation:
+- name: LogDNA Agent Repository
+  yum_repository:
+    name: logdna-agent
+    description: LogDNA Agent YUM Package
+    baseurl: http://repo.logdna.com/el6/
+    gpgcheck: false
+
+- name: Install LogDNA Agent
+  yum: state=present name=logdna-agent

@@ -1,0 +1,52 @@
+---
+
+dependency:
+  name: galaxy
+  options:
+    ignore-certs: True
+    ignore-errors: True
+
+driver:
+  name: docker
+
+lint:
+  name: yamllint
+
+platforms:
+  - name: CentOS_7
+    image: centos:7
+  - name: CentOS_6
+    image: centos:6
+  - name: Precise
+    image: ubuntu:12.04
+  - name: Trusty
+    image: ubuntu:14.04
+  - name: Xenial
+    image: ubuntu:16.04
+  - name: Jessie
+    image: debian:jessie-slim
+  - name: Artful
+    image: ubuntu:17.10
+
+provisioner:
+  name: ansible
+  lint:
+    name: ansible-lint
+
+scenario:
+  name: default
+  test_sequence:
+    - destroy
+    - dependency
+    - syntax
+    - create
+    - prepare
+    - converge
+    - side_effect
+    - verify
+    - destroy
+
+verifier:
+  name: testinfra
+  lint:
+    name: flake8
