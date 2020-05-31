@@ -71,6 +71,8 @@ run_weekly_jobs: no
 run_monthly_jobs: no
 run_jobs_bash_file: "run_jobs.sh"
 
+logdna_ingestion_key: "{{ vault_logdna_ingestion_key }}"
+
 django_environment_extra:
 
   SENTRY_DSN: "{{ vault_sentry_dsn }}"
