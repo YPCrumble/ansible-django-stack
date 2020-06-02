@@ -40,6 +40,6 @@ exec gunicorn \
     --worker-class gevent \
     --timeout {{ gunicorn_timeout_seconds|default(30) }} \
     --user $USER --group $GROUP \
-    --log-level debug \
+    --log-level info \
     --bind unix:$SOCKFILE \
     {{ application_name }}.wsgi
