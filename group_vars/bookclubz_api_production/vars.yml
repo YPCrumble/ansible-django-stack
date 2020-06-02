@@ -73,6 +73,8 @@ run_weekly_jobs: no
 run_monthly_jobs: yes
 run_jobs_bash_file: "run_jobs.sh"
 
+logdna_ingestion_key: "{{ vault_logdna_ingestion_key }}"
+
 django_environment_extra:
   AMAZON_SECRET_KEY: "{{ vault_amazon_secret_key }}"
   AMAZON_ACCESS_KEY: "{{ vault_amazon_access_key }}"
