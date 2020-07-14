@@ -1,0 +1,16 @@
+---
+# A list of htpasswd credentials.
+htpasswd_credentials: []
+  # - path: /etc/nginx/passwdfile
+  #   name: johndoe
+  #   password: 'supersecure'
+  #   owner: root
+  #   group: www-data
+  #   mode: 0640
+
+  # - path: /etc/apache2/passwdfile
+  #   name: janedoe
+  #   password: 'supersecure'
+  #   owner: root
+  #   group: www-data
+  #   mode: 0640

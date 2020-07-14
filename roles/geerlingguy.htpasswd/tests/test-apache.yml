@@ -1,0 +1,33 @@
+---
+# Note: This playbook is built to work on Red Hat-derivative Linux OSes.
+- hosts: all
+
+  vars:
+    htpasswd_credentials:
+      - path: /etc/httpd/passwdfile
+        name: johndoe
+        password: 'supersecure'
+        owner: root
+        group: apache
+        mode: 'u+rw,g+r'
+
+    apache_remove_default_vhost: True
+    apache_vhosts:
+      - listen: "80"
+        servername: "htpassword.test"
+        documentroot: "/var/www/html"
+        extra_parameters: |
+              <Directory "/var/www/html">
+                  AuthType Basic
+                  AuthName "Apache with basic auth."
+                  AuthUserFile /etc/httpd/passwdfile
+                  Require valid-user
+              </Directory>
+
+  pre_tasks:
+    - name: Ensure test dependencies are installed.
+      package: name=curl state=installed
+
+  roles:
+    - geerlingguy.apache
+    - role_under_test

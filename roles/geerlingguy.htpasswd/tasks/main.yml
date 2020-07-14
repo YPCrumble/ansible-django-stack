@@ -1,0 +1,19 @@
+---
+# Include variables and define needed variables.
+- name: Include OS-specific variables.
+  include_vars: "{{ ansible_os_family }}.yml"
+
+- name: Ensure the htpasswd utility is installed.
+  package: name={{ item }} state=present
+  with_items: "{{ htpasswd_required_packages }}"
+
+- name: Ensure htpasswd credentials are configured.
+  htpasswd:
+    path: "{{ item.path }}"
+    name: "{{ item.name }}"
+    password: "{{ item.password }}"
+    owner: "{{ item.owner }}"
+    group: "{{ item.group }}"
+    mode: "{{ item.mode | default('u+rw,g+r') }}"
+  with_items: "{{ htpasswd_credentials }}"
+  #no_log: True
