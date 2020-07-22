@@ -87,3 +87,4 @@ django_environment_extra:
   SKIMLINKS_API_KEY: "{{ vault_skimlinks_api_key }}"
   SKIMLINKS_BASE_URL: "{{ vault_skimlinks_base_url }}"
   ANYMAIL_WEBHOOK_SECRET: "{{ vault_anymail_webhook_secret }}"
+  CRONOFY_CLIENT_SECRET: "{{ vault_cronofy_client_secret }}"
