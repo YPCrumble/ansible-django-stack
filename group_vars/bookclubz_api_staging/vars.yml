@@ -68,7 +68,7 @@ broker_url: "amqp://{{ rabbitmq_application_user }}:{{ rabbitmq_application_pass
 run_django_db_migrations: yes
 run_django_collectstatic: yes
 
-run_hourly_jobs: no
+run_hourly_jobs: yes
 run_daily_jobs: yes
 run_weekly_jobs: no
 run_monthly_jobs: yes
