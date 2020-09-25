@@ -32,7 +32,7 @@ server {
     ssl_certificate_key {{ nginx_ssl_dest_dir }}/{{ application_name }}.key;
     {% endif %}
     ssl_protocols       TLSv1 TLSv1.1 TLSv1.2;
-    
+
     return 301 https://{{ nginx_server_name }}$request_uri;
 }
 
@@ -55,14 +55,14 @@ server {
     ssl_dhparam          /etc/ssl/certs/dhparams.pem;
     {% endif %}
 
-    # Various nginx optimizations via 
+    # Various nginx optimizations via
     # https://www.digitalocean.com/community/tutorials/how-to-optimize-nginx-configuration
-    # worker_processes 1;
+    worker_processes 4;
     # worker_connections 1024;
     client_body_timeout 12;
     client_header_timeout 12;
     keepalive_timeout 15;
-    send_timeout 10; 
+    send_timeout 10;
     client_body_buffer_size 10K;
     client_header_buffer_size 1k;
     client_max_body_size 4G;
@@ -104,7 +104,7 @@ server {
         add_header Cache-Control "public";
         {% endif %}
     }
-    
+
     location /files/ {
         alias   {{ nginx_files_dir }};
         {% if nginx_cache_files %}
@@ -112,12 +112,12 @@ server {
         add_header Cache-Control "public";
         {% endif %}
     }
-    
+
     {% if nginx_include_favicon %}
     # alias favicon.* to static
     location ~ ^/favicon.(\w*)$ {
         alias {{ nginx_favicon_dir }}/favicon\.$1;
-    } 
+    }
     {% endif %}
 
     location / {

@@ -34,6 +34,7 @@ gunicorn_num_workers: 3
 # you make a request, basically reloading the code. Very handy
 # when developing. Set to 0 for unlimited requests (default).
 gunicorn_max_requests: 1000
+gunicorn_timeout_seconds: 60
 
 # Nginx settings
 nginx_cache_static: yes
