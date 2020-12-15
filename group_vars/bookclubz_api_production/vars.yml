@@ -32,8 +32,9 @@ gunicorn_num_workers: 9
 # Setting this to 1 will restart the Gunicorn process each time
 # you make a request, basically reloading the code. Very handy
 # when developing. Set to 0 for unlimited requests (default).
-gunicorn_max_requests: 1000
-gunicorn_timeout_seconds: 60
+gunicorn_max_requests: 5000
+gunicorn_timeout_seconds: 30
+gunicorn_max_requests_jitter: 500
 
 # Nginx settings
 nginx_cache_static: yes

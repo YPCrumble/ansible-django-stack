@@ -39,6 +39,7 @@ exec gunicorn \
     --max-requests $MAX_REQUESTS \
     --worker-class gevent \
     --timeout {{ gunicorn_timeout_seconds|default(30) }} \
+    --max_requests_jitter {{ gunicorn_max_requests_jitter|default(100) }} \
     --user $USER --group $GROUP \
     --log-level info \
     --bind unix:$SOCKFILE \
