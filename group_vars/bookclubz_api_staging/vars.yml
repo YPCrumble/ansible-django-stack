@@ -90,3 +90,8 @@ django_environment_extra:
   SKIMLINKS_API_KEY: "{{ vault_skimlinks_api_key }}"
   SKIMLINKS_BASE_URL: "{{ vault_skimlinks_base_url }}"
   ANYMAIL_WEBHOOK_SECRET: "{{ vault_anymail_webhook_secret }}"
+
+  STRIPE_PUBLISHABLE_KEY: '{{ vault_stripe_publishable_key }}'
+  STRIPE_SECRET_KEY: '{{ vault_stripe_secret_key }}'
+  STRIPE_CLIENT_ID: '{{ vault_stripe_client_id }}'
+  STRIPE_CSRF_TOKEN: 'test_stripe_csrf_token'
