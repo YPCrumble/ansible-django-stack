@@ -6,7 +6,6 @@
     state: present
     name:
       - certbot
-      - python3-certbot-nginx
   tags: packages
 
 - name: Check if Nginx exists
