@@ -7,3 +7,6 @@ api.bookclubz.com
 [bookclubz_api_production:children]
 webservers
 dbservers
+
+[all:vars]
+multiple_sites=["api.bookclubz.com", "forum.bookclubz.com", "api2.bookclubz.com"]
