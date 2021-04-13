@@ -22,8 +22,10 @@
   args:
     creates: "{{ certbot_output_dir }}"
 
-- name: Install certbot and generate cert
-  command: "{{ certbot_script }} certonly --noninteractive --agree-tos --standalone --email {{ certbot_admin_email }} -d {{ item }} -d www.{{ item }}"
+- name: Install certbot and generate cert for multiple sites
+  # NOTE: This does not accommodate www. domains.
+  # Add -d www.{{ item }} to accommodate these.
+  command: "{{ certbot_script }} certonly --noninteractive --agree-tos --standalone --email {{ certbot_admin_email }} -d {{ item }}"
   when: multiple_sites is defined
   with_items: "{{ multiple_sites }}"
 
