@@ -27,6 +27,8 @@
       - silversearcher-ag
       - vim
       - autopostgresqlbackup
+      # This package is required for Ubuntu 16.04
+      - python3.9-distutils
 
 - name: Check whether /usr/bin/node exists
   stat:

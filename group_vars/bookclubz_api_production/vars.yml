@@ -3,7 +3,7 @@
 project_name: bookclubz
 application_name: "{{ project_name }}"
 enable_deadsnakes_ppa: yes
-virtualenv_python_version: python3.6
+virtualenv_python_version: python3.9
 requirements_file: "{{ project_path }}/requirements/production.txt"
 
 
