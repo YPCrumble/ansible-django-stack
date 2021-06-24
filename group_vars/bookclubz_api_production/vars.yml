@@ -10,7 +10,7 @@ requirements_file: "{{ project_path }}/requirements/production.txt"
 # Git settings.
 git_repo: "{{ vault_git_repo }}"
 setup_git_repo: yes
-git_branch: master
+git_branch: main
 
 
 # Security settings
@@ -90,7 +90,7 @@ django_environment_extra:
   SKIMLINKS_BASE_URL: "{{ vault_skimlinks_base_url }}"
   ANYMAIL_WEBHOOK_SECRET: "{{ vault_anymail_webhook_secret }}"
   CRONOFY_CLIENT_SECRET: "{{ vault_cronofy_client_secret }}"
-  
+
   STRIPE_PUBLISHABLE_KEY: '{{ vault_stripe_publishable_key }}'
   STRIPE_SECRET_KEY: '{{ vault_stripe_secret_key }}'
   STRIPE_CLIENT_ID: '{{ vault_stripe_client_id }}'
