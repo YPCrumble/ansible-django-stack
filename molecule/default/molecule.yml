@@ -25,6 +25,7 @@ provisioner:
   name: ansible
   env:
     ANSIBLE_ROLES_PATH: ../../roles/
+  # TODO: This is perhaps not required
   inventory:
     links:
       group_vars: ../../group_vars/
