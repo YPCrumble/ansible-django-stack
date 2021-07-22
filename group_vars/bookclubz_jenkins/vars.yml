@@ -61,7 +61,7 @@ broker_url: "amqp://{{ rabbitmq_application_user }}:{{ rabbitmq_application_pass
 run_django_db_migrations: yes
 run_django_collectstatic: yes
 
-# django_environment_extra:
+django_environment_extra:
 #   AMAZON_SECRET_KEY: "{{ vault_amazon_secret_key }}"
 #   AMAZON_ACCESS_KEY: "{{ vault_amazon_access_key }}"
 #   AMAZON_ASSOC_TAG: "{{ vault_amazon_assoc_tag }}"
