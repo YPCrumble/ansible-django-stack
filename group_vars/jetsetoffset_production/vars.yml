@@ -92,7 +92,7 @@ django_environment_extra:
   STRIPE_CLIENT_ID: '{{ vault_stripe_client_id }}'
   STRIPE_CSRF_TOKEN: '{{ vault_stripe_csrf_token }}'
 
-  #FARE_PORTAL_BASIC_AUTH: '{{ vault_fareportal_basic_auth }}'
+  # FARE_PORTAL_BASIC_AUTH: '{{ vault_fareportal_basic_auth }}'
   FARE_PORTAL_BASIC_AUTH: '{{ vault_fareportal_basic_auth_live }}'
   FARE_PORTAL_SEARCH_FLIGHT_URL: "https://fpwebbox.onetravel.com/api/search/SearchFlightAvailability"
   SAP_CONCUR_CLIENT_ID: '{{ vault_sap_concur_client_id }}'

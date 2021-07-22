@@ -17,7 +17,7 @@ sudo_user_password: "{{ vault_sudo_user_password }}"
 
 
 # Database settings.
-#db_user: "{{ application_name }}"
+# db_user: "{{ application_name }}"
 db_user: "{{ application_name }}"
 db_name: "{{ application_name }}"
 db_password: "{{ vault_db_password }}"
@@ -66,6 +66,6 @@ django_environment_extra:
   RAVEN_DSN_CONFIG: "{{ vault_raven_dsn_config }}"
   SKIMLINKS_API_KEY: "{{ vault_skimlinks_api_key  }}"
   SKIMLINKS_BASE_URL: "{{ vault_skimlinks_base_url }}"
-  #AMAZON_SECRET_KEY: "{{ vault_amazon_secret_key }}"
-  #AMAZON_ACCESS_KEY: "{{ vault_amazon_access_key }}"
-  #AMAZON_ASSOC_TAG: "{{ vault_amazon_assoc_tag }}"
+  # AMAZON_SECRET_KEY: "{{ vault_amazon_secret_key }}"
+  # AMAZON_ACCESS_KEY: "{{ vault_amazon_access_key }}"
+  # AMAZON_ASSOC_TAG: "{{ vault_amazon_assoc_tag }}"

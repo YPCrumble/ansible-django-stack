@@ -1,3 +1,5 @@
+---
+
 - name: Make sure the known hosts file exists
   file: "path={{ ssh_known_hosts_file }} state=touch"
 

@@ -13,3 +13,8 @@ rules:
   # NOTE(retr0h): Templates no longer fail this lint rule.
   #               Uncomment if running old Molecule templates.
   # truthy: disable
+
+ignore: |
+  roles/geerlingguy.htpasswd/
+  roles/logdna.logdna/
+  group_vars/*/vault.yml
