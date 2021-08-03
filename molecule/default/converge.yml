@@ -15,6 +15,7 @@
   vars:
     update_apt_cache: true
     force_ssh_authentication: false
+    server_user: "root"
 
   tasks:
     - name: Install Python3
