@@ -20,3 +20,4 @@
             owner={{ celery_user }}
             group={{ celery_group }}
             mode=0755
+  when: use_flower is defined

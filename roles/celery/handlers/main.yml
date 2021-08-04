@@ -6,4 +6,4 @@
 
 - name: Restart flower
   community.general.supervisorctl: name=flower state=restarted
-  when: use_celery is defined
+  when: use_flower is defined
