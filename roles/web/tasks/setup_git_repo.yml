@@ -38,6 +38,7 @@
   command: yarn --frozen-lockfile
   args:
     chdir: "{{ frontend_dir }}"
+  tags: notest
 
 - name: Delete all .pyc files
   ansible.builtin.command: find . -name '*.pyc' -delete
