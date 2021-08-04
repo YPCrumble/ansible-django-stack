@@ -48,7 +48,7 @@
         minute="15"
         job="bash {{ project_path }}/bin/{{ run_jobs_bash_file }} hourly"
         state=present
-  when: run_hourly_jobs
+  when: run_hourly_jobs is defined and run_hourly_jobs
   tags: django.cron
 
 - name: Ensure a cron job for running daily jobs exists
@@ -57,7 +57,7 @@
         hour="15"
         job="bash {{ project_path }}/bin/{{ run_jobs_bash_file }} daily"
         state=present
-  when: run_daily_jobs
+  when: run_daily_jobs is defined and run_daily_jobs
   tags: django.cron
 
 - name: Ensure a cron job for running weekly jobs exists
@@ -67,7 +67,7 @@
         weekday="1"
         job="bash {{ project_path }}/bin/{{ run_jobs_bash_file }} weekly"
         state=present
-  when: run_weekly_jobs
+  when: run_weekly_jobs is defined and run_weekly_jobs
   tags: django.cron
 
 - name: Ensure a cron job for running monthly jobs exists
@@ -77,5 +77,5 @@
         day="1"
         job="bash {{ project_path }}/bin/{{ run_jobs_bash_file }} monthly"
         state=present
-  when: run_monthly_jobs
+  when: run_monthly_jobs is defined and run_monthly_jobs
   tags: django.cron
