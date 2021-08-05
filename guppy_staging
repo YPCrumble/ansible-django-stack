@@ -1,0 +1,12 @@
+[webservers]
+staging.guppy.co nginx_use_letsencrypt=true
+
+[dbservers]
+staging.guppy.co
+
+[guppy_staging:children]
+webservers
+dbservers
+
+[all:vars]
+multiple_sites=["staging.guppy.co"]

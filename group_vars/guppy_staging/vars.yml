@@ -1,0 +1,80 @@
+---
+
+project_name: guppy
+application_name: "{{ project_name }}"
+enable_deadsnakes_ppa: yes
+virtualenv_python_version: python3.8
+certbot_admin_email: "ian@guppy.co"
+requirements_file: "{{ project_path }}/requirements/local.txt"
+
+
+# Git settings.
+git_repo: "{{ vault_git_repo }}"
+setup_git_repo: yes
+git_branch: develop
+
+
+# Security settings
+sudo_user_password: "{{ vault_sudo_user_password }}"
+
+
+# Database settings.
+db_user: "{{ application_name }}"
+db_name: "{{ application_name }}"
+db_password: "{{ vault_db_password }}"
+
+
+# Gunicorn settings. For the number of workers, a good rule to follow is
+# 2 x number of CPUs + 1
+gunicorn_num_workers: 3
+
+# Setting this to 1 will restart the Gunicorn process each time
+# you make a request, basically reloading the code. Very handy
+# when developing. Set to 0 for unlimited requests (default).
+gunicorn_max_requests: 1000
+
+# Nginx settings
+nginx_cache_static: yes
+nginx_cache_media: yes
+
+
+# RabbitMQ settings.
+rabbitmq_server_name: "{{ inventory_hostname }}"
+
+rabbitmq_admin_user: admin
+rabbitmq_admin_password: password
+
+rabbitmq_application_vhost: "{{ application_name }}"
+rabbitmq_application_user: "{{ application_name }}"
+rabbitmq_application_password: password
+
+
+# Celery settings.
+celery_num_workers: 2
+use_celery: true
+use_flower: false
+flower_admin_password: "{{ vault_flower_admin_password }}"
+
+
+# Application settings.
+django_settings_file: "settings.staging"
+django_secret_key: "{{ vault_django_secret_key }}"
+
+broker_url: "amqp://{{ rabbitmq_application_user }}:{{ rabbitmq_application_password }}@localhost/{{ rabbitmq_application_vhost }}"
+
+run_django_db_migrations: yes
+run_django_collectstatic: yes
+
+run_hourly_jobs: yes
+run_daily_jobs: yes
+run_weekly_jobs: yes
+run_monthly_jobs: yes
+run_jobs_bash_file: "run_jobs.sh"
+
+# logdna_ingestion_key: "{{ vault_logdna_ingestion_key }}"
+
+django_environment_extra:
+  SENTRY_DSN: "{{ vault_sentry_dsn }}"
+
+#   STRIPE_PUBLISHABLE_KEY: '{{ vault_stripe_publishable_key }}'
+#   STRIPE_SECRET_KEY: '{{ vault_stripe_secret_key }}'
