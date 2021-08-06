@@ -21,6 +21,7 @@
   when: multiple_sites is not defined
   args:
     creates: "{{ certbot_output_dir }}"
+  ignore_errors: yes
 
 - name: Install certbot and generate cert for multiple sites
   # NOTE: This does not accommodate www. domains.
@@ -28,6 +29,7 @@
   command: "{{ certbot_script }} certonly --noninteractive --agree-tos --standalone --email {{ certbot_admin_email }} -d {{ item }}"
   when: multiple_sites is defined
   with_items: "{{ multiple_sites }}"
+  ignore_errors: yes
 
 - name: Ensure Nginx is started
   ansible.builtin.service: name=nginx state=started
@@ -39,3 +41,4 @@
         job="{{ certbot_script }} renew --standalone --no-self-upgrade --pre-hook \"service nginx stop\" --post-hook \"service nginx start\" --quiet"
         state=present
   when: certbot_auto_renew
+  tags: notest
