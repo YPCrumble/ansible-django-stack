@@ -17,8 +17,6 @@
     force_ssh_authentication: false
     server_user: "root"
     nginx_use_letsencrypt: false
-    inventory_hostname: staging.guppy.co
-    certbot_admin_email: ipcampbell@gmail.com
 
   tasks:
     - name: Install Python3
