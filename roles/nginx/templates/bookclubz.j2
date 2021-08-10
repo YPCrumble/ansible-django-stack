@@ -52,6 +52,7 @@ server {
     gzip_min_length  1000;
     gzip_proxied     any;
     gzip_types       text/plain text/javascript application/javascript application/x-javascript text/xml text/css application/xml application/json;
+    proxy_read_timeout 30;
 
 
     location /flower/ {
