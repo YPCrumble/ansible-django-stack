@@ -1,0 +1,9 @@
+[webservers]
+guppy.co nginx_use_letsencrypt=true
+
+[dbservers]
+guppy.co
+
+[guppy_production:children]
+webservers
+dbservers
