@@ -434,3 +434,17 @@ molecule test
 [deadsnakes]: https://launchpad.net/~fkrull/+archive/ubuntu/deadsnakes/?field.series_filter=xenial
 [michal-ansible_guide]: http://michal.karzynski.pl/blog/2013/06/09/django-nginx-gunicorn-virtualenv-supervisor/
 [deploy-encrypted-copies]: https://www.calazan.com/how-to-deploy-encrypted-copies-of-your-ssl-keys-and-other-files-with-ansible-and-openssl/
+
+## Deploy steps
+1. Setup
+ - Checkout to `ian` branch.
+ - We will working on `/deployments/group_vars/bookclubz_api_staging_folder/` and `/deployments/group_vars/bookclubz_api_production/`
+ - Make sure that the branch you want to deploy to server is correct. Se the variable `git_branch` on file `vars.yml`:
+  Defaukt: `develop` for staging or `main` for production
+ - If we need to add the ENV variable, we can use `ansible` edit file `vault.yml`: Example: `ansible-vault edit vault.yml`. 
+  And we need add this variable to `vars.yml` file, block `django_environment_extra`
+2.  Run the script deploy:
+- Run `. bin/bookclubz_api_(server_name)/deploy-bookclubz-api-(server_name).sh`
+- Enter the SUDO password and VAULT password (Note: Ian will share SUDO and VAULT password on lastpass)
+
+(*) server_name is staging or production
