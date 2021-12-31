@@ -78,5 +78,5 @@ django_environment_extra:
 
   SPARKPOST_API_KEY: "{{ vault_sparkpost_api_key }}"
 
-#   STRIPE_PUBLISHABLE_KEY: '{{ vault_stripe_publishable_key }}'
-#   STRIPE_SECRET_KEY: '{{ vault_stripe_secret_key }}'
+  STRIPE_PUBLISHABLE_KEY: "{{ vault_stripe_publishable_key }}"
+  STRIPE_SECRET_KEY: "{{ vault_stripe_secret_key }}"
