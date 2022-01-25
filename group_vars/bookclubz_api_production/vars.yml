@@ -95,3 +95,5 @@ django_environment_extra:
   STRIPE_SECRET_KEY: '{{ vault_stripe_secret_key }}'
   STRIPE_CLIENT_ID: '{{ vault_stripe_client_id }}'
   STRIPE_CSRF_TOKEN: '{{ vault_stripe_csrf_token }}'
+  SOCIAL_AUTH_GOOGLE_OAUTH2_KEY: 'vault_social_auth_google_oauth2_key'
+  SOCIAL_AUTH_GOOGLE_OAUTH2_SECRET: '{{ vault_social_auth_google_oauth2_secret }}'
