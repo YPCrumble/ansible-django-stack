@@ -62,6 +62,12 @@ broker_url: "amqp://{{ rabbitmq_application_user }}:{{ rabbitmq_application_pass
 run_django_db_migrations: yes
 run_django_collectstatic: yes
 
+run_hourly_jobs: yes
+run_daily_jobs: yes
+run_weekly_jobs: yes
+run_monthly_jobs: yes
+run_jobs_bash_file: "run_jobs.sh"
+
 logdna_ingestion_key: "{{ vault_logdna_ingestion_key }}"
 
 django_environment_extra:
