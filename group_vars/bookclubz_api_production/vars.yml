@@ -97,3 +97,6 @@ django_environment_extra:
   STRIPE_CSRF_TOKEN: '{{ vault_stripe_csrf_token }}'
   SOCIAL_AUTH_GOOGLE_OAUTH2_KEY: 'vault_social_auth_google_oauth2_key'
   SOCIAL_AUTH_GOOGLE_OAUTH2_SECRET: '{{ vault_social_auth_google_oauth2_secret }}'
+  RAPIDAPI_URL: '{{ vault_rapidapi_url }}'
+  RAPIDAPI_HOST: '{{ vault_rapidapi_host }}'
+  RAPIDAPI_KEY: '{{ vault_rapidapi_key }}'
