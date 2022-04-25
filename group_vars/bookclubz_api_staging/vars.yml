@@ -101,3 +101,7 @@ django_environment_extra:
   RAPIDAPI_URL: '{{ vault_rapidapi_url }}'
   RAPIDAPI_HOST: '{{ vault_rapidapi_host }}'
   RAPIDAPI_KEY: '{{ vault_rapidapi_key }}'
+  SOCIAL_AUTH_APPLE_ID_CLIENT: '{{ vault_apple_id_client }}'
+  SOCIAL_AUTH_APPLE_ID_TEAM: '{{ vault_apple_id_team }}'
+  SOCIAL_AUTH_APPLE_ID_KEY: '{{ vault_apple_id_key }}'
+  SOCIAL_AUTH_APPLE_ID_SECRET: '{{ vault_apple_id_secret }}'
