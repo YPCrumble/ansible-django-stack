@@ -104,3 +104,5 @@ django_environment_extra:
   SOCIAL_AUTH_APPLE_ID_TEAM: '{{ vault_apple_id_team }}'
   SOCIAL_AUTH_APPLE_ID_KEY: '{{ vault_apple_id_key }}'
   SOCIAL_AUTH_APPLE_ID_SECRET: '{{ vault_apple_id_secret }}'
+  AZURE_SUBSCRIPTION_KEY: '{{ vault_azure_subscription_key }}'
+  MODERATION_API_KEY: '{{ vault_moderation_api_key }}'
