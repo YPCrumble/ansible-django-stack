@@ -109,3 +109,5 @@ django_environment_extra:
   MODERATION_API_KEY: '{{ vault_moderation_api_key }}'
   LIBRO_BOOK_AUTH: '{{ vault_libro_book_auth }}'
   GOOGLE_PLACES_GEOCODING_API_KEY: '{{ vault_google_places_geocoding_api_key }}'
+  TYPESENSE_API_KEY: '{{ vault_typesense_api_key }}'
+  TYPESENSE_HOST: '{{ vault_typesense_host }}'
