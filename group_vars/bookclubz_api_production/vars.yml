@@ -109,3 +109,5 @@ django_environment_extra:
   GOOGLE_PLACES_GEOCODING_API_KEY: '{{ vault_google_places_geocoding_api_key }}'
   TYPESENSE_API_KEY: '{{ vault_typesense_api_key }}'
   TYPESENSE_HOST: '{{ vault_typesense_host }}'
+  IMAGE_FROM_HTML_URL: '{{ vault_image_from_html_url }}'
+  IMAGE_FROM_HTML_TOKEN: '{{ vault_image_from_html_token }}'
