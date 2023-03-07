@@ -112,3 +112,4 @@ django_environment_extra:
   TYPESENSE_HOST: '{{ vault_typesense_host }}'
   IMAGE_FROM_HTML_URL: '{{ vault_image_from_html_url }}'
   IMAGE_FROM_HTML_TOKEN: '{{ vault_image_from_html_token }}'
+  CALENDAR_API_TOKEN: '{{ vault_calendar_api_token }}'
