@@ -16,6 +16,7 @@
   ansible.builtin.command: file {{ swap_file_path }}
   register: swapfile
   tags: swap.file.mkswap
+  ignore_errors: true
   changed_when: false
 
 - name: Make swap file
