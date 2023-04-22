@@ -3,9 +3,15 @@
 - name: Include OS-specific variables.
   include_vars: "{{ ansible_os_family }}.yml"
 
-- name: Ensure the htpasswd utility is installed.
-  package: name={{ item }} state=present
-  with_items: "{{ htpasswd_required_packages }}"
+- name: Define htpasswd_required_packages.
+  set_fact:
+    htpasswd_required_packages: "{{ __htpasswd_required_packages | list }}"
+  when: htpasswd_required_packages is not defined
+
+- name: Ensure the htpasswd packages are installed.
+  package:
+    name: "{{ htpasswd_required_packages }}"
+    state: present
 
 - name: Ensure htpasswd credentials are configured.
   htpasswd:
@@ -16,4 +22,4 @@
     group: "{{ item.group }}"
     mode: "{{ item.mode | default('u+rw,g+r') }}"
   with_items: "{{ htpasswd_credentials }}"
-  #no_log: True
+  no_log: "{{ htpasswd_nolog }}"

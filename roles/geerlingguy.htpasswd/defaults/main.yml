@@ -1,16 +1,22 @@
 ---
+# Define this variable if you'd like to override the defaults.
+# htpasswd_required_packages: []
+
+# Whether to show htpasswd credentials in Ansible's log output.
+htpasswd_nolog: true
+
 # A list of htpasswd credentials.
 htpasswd_credentials: []
-  # - path: /etc/nginx/passwdfile
-  #   name: johndoe
-  #   password: 'supersecure'
-  #   owner: root
-  #   group: www-data
-  #   mode: 0640
+# - path: /etc/nginx/passwdfile
+#   name: johndoe
+#   password: 'supersecure'
+#   owner: root
+#   group: www-data
+#   mode: 0640
 
-  # - path: /etc/apache2/passwdfile
-  #   name: janedoe
-  #   password: 'supersecure'
-  #   owner: root
-  #   group: www-data
-  #   mode: 0640
+# - path: /etc/apache2/passwdfile
+#   name: janedoe
+#   password: 'supersecure'
+#   owner: root
+#   group: www-data
+#   mode: 0640
