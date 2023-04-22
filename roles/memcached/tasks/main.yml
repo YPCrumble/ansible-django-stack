@@ -8,7 +8,7 @@
   tags: packages
 
 - name: Install Libmemcached
-  apt: name=libmemcached-dev update_cache={{ update_apt_cache }} state=present
+  ansible.builtin.apt: name=libmemcached-dev update_cache={{ update_apt_cache }} state=present
   tags: packages
 
 - name: Create the Memcached configuration file

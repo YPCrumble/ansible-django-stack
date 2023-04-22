@@ -2,14 +2,14 @@
 
 project_name: bookclubz
 application_name: "{{ project_name }}"
-enable_deadsnakes_ppa: yes
+enable_deadsnakes_ppa: true
 virtualenv_python_version: python3.9
 requirements_file: "{{ project_path }}/requirements/production.txt"
 
 
 # Git settings.
 git_repo: "{{ vault_git_repo }}"
-setup_git_repo: yes
+setup_git_repo: true
 git_branch: main
 
 
@@ -36,9 +36,9 @@ gunicorn_timeout_seconds: 30
 gunicorn_max_requests_jitter: 500
 
 # Nginx settings
-nginx_cache_static: yes
-nginx_cache_media: yes
-nginx_cache_files: yes
+nginx_cache_static: true
+nginx_cache_media: true
+nginx_cache_files: true
 
 
 # RabbitMQ settings.
@@ -54,8 +54,8 @@ rabbitmq_application_password: "{{ vault_rabbitmq_application_password }}"
 
 # Celery settings.
 celery_num_workers: 4
-use_celery: yes
-use_flower: yes
+use_celery: true
+use_flower: true
 flower_admin_password: "{{ vault_flower_admin_password }}"
 
 
@@ -65,13 +65,13 @@ django_secret_key: "{{ vault_django_secret_key }}"
 
 broker_url: "amqp://{{ rabbitmq_application_user }}:{{ rabbitmq_application_password }}@localhost/{{ rabbitmq_application_vhost }}"
 
-run_django_db_migrations: yes
-run_django_collectstatic: yes
+run_django_db_migrations: true
+run_django_collectstatic: true
 
-run_hourly_jobs: yes
-run_daily_jobs: yes
-run_weekly_jobs: no
-run_monthly_jobs: yes
+run_hourly_jobs: true
+run_daily_jobs: true
+run_weekly_jobs: false
+run_monthly_jobs: true
 run_jobs_bash_file: "run_jobs.sh"
 
 logdna_ingestion_key: "{{ vault_logdna_ingestion_key }}"

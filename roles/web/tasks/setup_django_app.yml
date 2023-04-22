@@ -44,7 +44,7 @@
     - deploy
 
 - name: Ensure a cron job for running hourly jobs exists
-  cron: name="run hourly jobs"
+  ansible.builtin.cron: name="run hourly jobs"
         minute="15"
         job="bash {{ project_path }}/bin/{{ run_jobs_bash_file }} hourly"
         state=present
@@ -52,7 +52,7 @@
   tags: django.cron
 
 - name: Ensure a cron job for running daily jobs exists
-  cron: name="run daily jobs"
+  ansible.builtin.cron: name="run daily jobs"
         minute="35"
         hour="15"
         job="bash {{ project_path }}/bin/{{ run_jobs_bash_file }} daily"
@@ -61,7 +61,7 @@
   tags: django.cron
 
 - name: Ensure a cron job for running weekly jobs exists
-  cron: name="run weekly jobs"
+  ansible.builtin.cron: name="run weekly jobs"
         minute="35"
         hour="9"
         weekday="1"
@@ -71,7 +71,7 @@
   tags: django.cron
 
 - name: Ensure a cron job for running monthly jobs exists
-  cron: name="run monthly jobs"
+  ansible.builtin.cron: name="run monthly jobs"
         minute="35"
         hour="10"
         day="1"

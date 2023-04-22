@@ -18,7 +18,7 @@
               mode="0644"
 
 - name: Automatically reboot if required
-  lineinfile: dest=/etc/apt/apt.conf.d/50unattended-upgrades
+  ansible.builtin.lineinfile: dest=/etc/apt/apt.conf.d/50unattended-upgrades
               regexp="Unattended-Upgrade::Automatic-Reboot"
               line="Unattended-Upgrade::Automatic-Reboot \"true\";"
               state=present

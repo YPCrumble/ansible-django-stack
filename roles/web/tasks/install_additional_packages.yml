@@ -7,11 +7,11 @@
   when: enable_deadsnakes_ppa
 
 - name: "Add node 10 (LTS) to the apt sources list."
-  shell: curl -sL https://deb.nodesource.com/setup_10.x | sudo -E bash -
+  ansible.builtin.shell: curl -sL https://deb.nodesource.com/setup_10.x | sudo -E bash -
   tags: molecule-idempotence-notest
 
 - name: "Update or add the sentry-cli package."
-  shell: sentry-cli update || curl -sL https://sentry.io/get-cli/ | bash
+  ansible.builtin.shell: sentry-cli update || curl -sL https://sentry.io/get-cli/ | bash
   tags:
     - deploy
     - molecule-idempotence-notest
@@ -34,32 +34,32 @@
       - python3.9-distutils
 
 - name: Check whether /usr/bin/node exists
-  stat:
+  ansible.builtin.stat:
     path: /usr/bin/node
   register: usr_bin_node_exists
 
 - name: Symlink nodejs to `node`
-  file: src=/usr/bin/nodejs dest=/usr/bin/node state=link
-  when: usr_bin_node_exists.stat.exists == False
+  ansible.builtin.file: src=/usr/bin/nodejs dest=/usr/bin/node state=link
+  when: not usr_bin_node_exists.stat.exists
 
 - name: Add an Apt signing key, uses whichever key is at the URL
-  apt_key:
+  ansible.builtin.apt_key:
     url: https://dl.yarnpkg.com/debian/pubkey.gpg
     state: present
 
 - name: Add the Yarn repository to the apt sources list
-  apt_repository: repo='deb https://dl.yarnpkg.com/debian/ stable main'
+  ansible.builtin.apt_repository: repo='deb https://dl.yarnpkg.com/debian/ stable main'
                   update_cache={{ update_apt_cache }}
                   state=present
 
 - name: Make sure latest yarn is installed
-  apt:
+  ansible.builtin.apt:
     name: yarn
     state: latest
     update_cache: "{{ update_apt_cache }}"
 
 - name: Setup LogDNA
-  include_role:
+  ansible.builtin.include_role:
     name: logdna.logdna
   vars:
     conf_key: "{{ logdna_ingestion_key }}"

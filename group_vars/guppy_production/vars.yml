@@ -2,7 +2,7 @@
 
 project_name: guppy
 application_name: "{{ project_name }}"
-enable_deadsnakes_ppa: yes
+enable_deadsnakes_ppa: true
 virtualenv_python_version: python3.9
 certbot_admin_email: "ian@guppy.co"
 requirements_file: "{{ project_path }}/requirements/local.txt"
@@ -10,7 +10,7 @@ requirements_file: "{{ project_path }}/requirements/local.txt"
 
 # Git settings.
 git_repo: "{{ vault_git_repo }}"
-setup_git_repo: yes
+setup_git_repo: true
 git_branch: master
 
 
@@ -34,8 +34,8 @@ gunicorn_num_workers: 3
 gunicorn_max_requests: 1000
 
 # Nginx settings
-nginx_cache_static: yes
-nginx_cache_media: yes
+nginx_cache_static: true
+nginx_cache_media: true
 
 
 # RabbitMQ settings.
@@ -62,13 +62,13 @@ django_secret_key: "{{ vault_django_secret_key }}"
 
 broker_url: "amqp://{{ rabbitmq_application_user }}:{{ rabbitmq_application_password }}@localhost/{{ rabbitmq_application_vhost }}"
 
-run_django_db_migrations: yes
-run_django_collectstatic: yes
+run_django_db_migrations: true
+run_django_collectstatic: true
 
-run_hourly_jobs: yes
-run_daily_jobs: yes
-run_weekly_jobs: yes
-run_monthly_jobs: yes
+run_hourly_jobs: true
+run_daily_jobs: true
+run_weekly_jobs: true
+run_monthly_jobs: true
 run_jobs_bash_file: "run_jobs.sh"
 
 logdna_ingestion_key: "{{ vault_logdna_ingestion_key }}"
