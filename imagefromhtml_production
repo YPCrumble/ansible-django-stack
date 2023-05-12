@@ -1,0 +1,9 @@
+[webservers]
+imagefromhtml.com nginx_use_letsencrypt=true
+
+[dbservers]
+imagefromhtml.com
+
+[imagefromhtml_production:children]
+webservers
+dbservers

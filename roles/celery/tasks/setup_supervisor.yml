@@ -32,7 +32,7 @@
 - name: Check for an existing celery logfile
   ansible.builtin.stat:
     path: "{{ celery_log_file }}"
-  register: c
+  register: p
 
 - name: Check for an existing flower logfile
   ansible.builtin.stat:

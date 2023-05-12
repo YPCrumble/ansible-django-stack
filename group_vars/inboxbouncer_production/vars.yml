@@ -1,0 +1,78 @@
+---
+
+project_name: inboxbouncer
+application_name: "{{ project_name }}"
+enable_deadsnakes_ppa: true
+virtualenv_python_version: python3.10
+certbot_admin_email: "ian@inboxbouncer.com"
+requirements_file: "{{ project_path }}/requirements/production.txt"
+
+
+# Git settings.
+git_repo: "{{ vault_git_repo }}"
+setup_git_repo: true
+git_branch: main
+
+
+# Security settings
+sudo_user_password: "{{ vault_sudo_user_password }}"
+
+
+# Database settings.
+db_user: "{{ application_name }}"
+db_name: "{{ application_name }}"
+db_password: "{{ vault_db_password }}"
+
+
+# Gunicorn settings. For the number of workers, a good rule to follow is
+# 2 x number of CPUs + 1
+gunicorn_num_workers: 3
+
+# Setting this to 1 will restart the Gunicorn process each time
+# you make a request, basically reloading the code. Very handy
+# when developing. Set to 0 for unlimited requests (default).
+gunicorn_max_requests: 1000
+
+# Nginx settings
+nginx_cache_static: true
+nginx_cache_media: true
+nginx_cache_files: true
+
+
+# RabbitMQ settings.
+rabbitmq_server_name: "{{ inventory_hostname }}"
+
+rabbitmq_admin_user: admin
+rabbitmq_admin_password: password
+
+rabbitmq_application_vhost: "{{ application_name }}"
+rabbitmq_application_user: "{{ application_name }}"
+rabbitmq_application_password: password
+
+
+# Celery settings.
+celery_num_workers: 2
+use_celery: true
+use_flower: false
+flower_admin_password: "{{ vault_flower_admin_password }}"
+
+
+# Application settings.
+django_settings_file: "settings.production"
+django_secret_key: "{{ vault_django_secret_key }}"
+
+broker_url: "amqp://{{ rabbitmq_application_user }}:{{ rabbitmq_application_password }}@localhost/{{ rabbitmq_application_vhost }}"
+
+run_django_db_migrations: true
+run_django_collectstatic: true
+
+run_hourly_jobs: false
+run_daily_jobs: false
+run_weekly_jobs: false
+run_monthly_jobs: false
+run_jobs_bash_file: "run_jobs.sh"
+
+django_environment_extra:
+  SPARKPOST_API_KEY: "{{ vault_sparkpost_api_key }}"
+  GOOGLE_CLIENT_ID: "{{ vault_google_client_id }}"
+  GOOGLE_CLIENT_SECRET: "{{ vault_google_client_secret }}"

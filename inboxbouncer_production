@@ -1,0 +1,9 @@
+[webservers]
+inboxbouncer.com nginx_use_letsencrypt=true
+
+[dbservers]
+inboxbouncer.com
+
+[inboxbouncer_production:children]
+webservers
+dbservers

@@ -1,0 +1,9 @@
+[webservers]
+calendarinviteapi.com nginx_use_letsencrypt=true
+
+[dbservers]
+calendarinviteapi.com
+
+[calendar_production:children]
+webservers
+dbservers
