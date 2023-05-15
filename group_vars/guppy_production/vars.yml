@@ -42,11 +42,11 @@ nginx_cache_media: true
 rabbitmq_server_name: "{{ inventory_hostname }}"
 
 rabbitmq_admin_user: admin
-rabbitmq_admin_password: password
+rabbitmq_admin_password: "{{ vault_rabbitmq_admin_password }}"
 
 rabbitmq_application_vhost: "{{ application_name }}"
 rabbitmq_application_user: "{{ application_name }}"
-rabbitmq_application_password: password
+rabbitmq_application_password: "{{ vault_rabbitmq_application_password }}"
 
 
 # Celery settings.
