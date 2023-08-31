@@ -73,6 +73,8 @@ run_weekly_jobs: false
 run_monthly_jobs: false
 run_jobs_bash_file: "run_jobs.sh"
 
+logdna_ingestion_key: "{{ vault_logdna_ingestion_key }}"
+
 django_environment_extra:
   SPARKPOST_API_KEY: "{{ vault_sparkpost_api_key }}"
   GOOGLE_CLIENT_ID: "{{ vault_google_client_id }}"
