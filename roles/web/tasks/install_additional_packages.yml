@@ -6,8 +6,8 @@
                   state=present
   when: enable_deadsnakes_ppa
 
-- name: "Add node 10 (LTS) to the apt sources list."
-  ansible.builtin.shell: curl -sL https://deb.nodesource.com/setup_10.x | sudo -E bash -
+- name: "Add node 18 (LTS) to the apt sources list."
+  ansible.builtin.shell: curl -sL https://deb.nodesource.com/setup_18.x | sudo -E bash -
   tags: molecule-idempotence-notest
 
 - name: "Update or add the sentry-cli package."

@@ -32,6 +32,7 @@
   notify:
     - Restart application
     - Restart {{ celery_application_name }}
+    - Restart {{ celery_beat_application_name }}
   tags: git
 
 - name: Install dependencies (yarn)
