@@ -3,7 +3,7 @@
 project_name: bookclubz
 application_name: "{{ project_name }}"
 enable_deadsnakes_ppa: true
-virtualenv_python_version: python3.9
+virtualenv_python_version: python3.10
 requirements_file: "{{ project_path }}/requirements/production.txt"
 certbot_admin_email: 'admin@bookclubz.com'
 
@@ -69,6 +69,7 @@ broker_url: "amqp://{{ rabbitmq_application_user }}:{{ rabbitmq_application_pass
 run_django_db_migrations: true
 run_django_collectstatic: true
 
+run_minutely_jobs: true
 run_hourly_jobs: true
 run_daily_jobs: true
 run_weekly_jobs: false
@@ -114,3 +115,12 @@ django_environment_extra:
   IMAGE_FROM_HTML_URL: '{{ vault_image_from_html_url }}'
   IMAGE_FROM_HTML_TOKEN: '{{ vault_image_from_html_token }}'
   CALENDAR_API_TOKEN: '{{ vault_calendar_api_token }}'
+  REVENUECAT_API_KEY: '{{ vault_revenuecat_api_key }}'
+  SENDGRID_API_KEY: '{{ vault_sendgrid_api_key }}'
+  AWS_ACCESS_KEY_ID: '{{vault_aws_access_key_id}}'
+  AWS_SECRET_ACCESS_KEY: '{{vault_aws_secret_access_key}}'
+  DYTE_ORGANIZATION_ID: '{{ vault_dyte_organization_id }}'
+  DYTE_API_KEY: '{{ vault_dyte_api_key }}'
+  DYTE_WEBHOOK_ID: '{{ vault_dyte_webhook_id }}'
+  IPINTEL_API_URL: '{{ vault_ipintel_api_url }}'
+  IPINFO_API_KEY: '{{ vault_ipinfo_api_key }}'
