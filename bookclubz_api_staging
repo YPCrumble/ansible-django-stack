@@ -1,12 +1,12 @@
 [webservers]
-api.staging.bookclubz.com nginx_use_letsencrypt=true
+api.staging.bookclubs.com nginx_use_letsencrypt=true
 
 [dbservers]
-api.staging.bookclubz.com
+api.staging.bookclubs.com
 
 [bookclubz_api_staging:children]
 webservers
 dbservers
 
 [all:vars]
-multiple_sites=["api.staging.bookclubz.com", "api2.staging.bookclubz.com", "api.staging.bookclubs.com"]
+multiple_sites=["api.staging.bookclubs.com", "api.staging2.bookclubs.com"]
