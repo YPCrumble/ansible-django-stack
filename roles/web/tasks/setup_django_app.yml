@@ -43,6 +43,14 @@
     - django.collectstatic
     - deploy
 
+- name: Ensure a cron job for running minutely jobs exists
+  cron: name="run minutely jobs"
+        minute="*"
+        job="bash {{ project_path }}/bin/{{ run_jobs_bash_file }} minutely"
+        state=present
+  when: run_minutely_jobs is defined and run_minutely_jobs
+  tags: django.cron
+
 - name: Ensure a cron job for running hourly jobs exists
   ansible.builtin.cron: name="run hourly jobs"
         minute="15"
