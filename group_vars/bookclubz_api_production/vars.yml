@@ -26,7 +26,7 @@ db_password: "{{ vault_db_password }}"
 # Gunicorn settings.
 # For the number of workers, a good rule to follow is
 # 2 x number of CPUs + 1
-gunicorn_num_workers: 12
+gunicorn_num_workers: 17
 
 # Setting this to 1 will restart the Gunicorn process each time
 # you make a request, basically reloading the code. Very handy
@@ -53,7 +53,7 @@ rabbitmq_application_password: "{{ vault_rabbitmq_application_password }}"
 
 
 # Celery settings.
-celery_num_workers: 4
+celery_num_workers: 8
 use_celery: true
 use_flower: true
 flower_admin_password: "{{ vault_flower_admin_password }}"
@@ -67,6 +67,7 @@ broker_url: "amqp://{{ rabbitmq_application_user }}:{{ rabbitmq_application_pass
 
 run_django_db_migrations: true
 run_django_collectstatic: true
+
 
 run_minutely_jobs: true
 run_hourly_jobs: true
