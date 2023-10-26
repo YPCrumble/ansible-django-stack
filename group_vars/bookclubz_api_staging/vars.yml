@@ -124,3 +124,6 @@ django_environment_extra:
   DYTE_WEBHOOK_ID: '{{ vault_dyte_webhook_id }}'
   IPINTEL_API_URL: '{{ vault_ipintel_api_url }}'
   IPINFO_API_KEY: '{{ vault_ipinfo_api_key }}'
+  TWILIO_ACCOUNT_SID: '{{ vault_twilio_account_sid }}'
+  TWILIO_AUTH_TOKEN: '{{ vault_twilio_auth_token }}'
+  TWILIO_MESSAGE_SERVICE_SID: '{{ vault_twilio_message_service_sid }}'
