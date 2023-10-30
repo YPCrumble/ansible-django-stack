@@ -9,4 +9,4 @@ webservers
 dbservers
 
 [all:vars]
-multiple_sites=["api2.bookclubs.com"]
+multiple_sites=["api2.bookclubs.com", "api.bookclubs.com"]

@@ -1,6 +1,6 @@
 ---
 
 # Disable dbservers.yml if do not need to install db
-# - ansible.builtin.import_playbook: dbservers.yml
+- ansible.builtin.import_playbook: dbservers.yml
 
 - ansible.builtin.import_playbook: webservers.yml
