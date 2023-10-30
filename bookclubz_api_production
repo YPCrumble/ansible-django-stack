@@ -1,12 +1,12 @@
 [webservers]
-api3.bookclubs.com nginx_use_letsencrypt=true
+api2.bookclubs.com nginx_use_letsencrypt=true
 
 [dbservers]
-api3.bookclubs.com
+api2.bookclubs.com
 
 [bookclubz_api_production:children]
 webservers
 dbservers
 
 [all:vars]
-multiple_sites=["api3.bookclubs.com", "api.bookclubs.com"]
+multiple_sites=["api2.bookclubs.com", "api.bookclubs.com"]
