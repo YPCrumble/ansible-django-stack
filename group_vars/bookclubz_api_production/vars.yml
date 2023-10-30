@@ -69,11 +69,11 @@ run_django_db_migrations: true
 run_django_collectstatic: true
 
 
-run_minutely_jobs: true
-run_hourly_jobs: true
-run_daily_jobs: true
+run_minutely_jobs: false
+run_hourly_jobs: false
+run_daily_jobs: false
 run_weekly_jobs: false
-run_monthly_jobs: true
+run_monthly_jobs: false
 run_jobs_bash_file: "run_jobs.sh"
 
 logdna_ingestion_key: "{{ vault_logdna_ingestion_key }}"
