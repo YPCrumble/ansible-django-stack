@@ -44,7 +44,7 @@
     - deploy
 
 - name: Ensure a cron job for running minutely jobs exists
-  cron: name="run minutely jobs"
+  ansible.builtin.cron: name="run minutely jobs"
         minute="*"
         job="bash {{ project_path }}/bin/{{ run_jobs_bash_file }} minutely"
         state=present
