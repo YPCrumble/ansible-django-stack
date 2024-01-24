@@ -1,3 +1,6 @@
+# NGINX rate limit: https://www.nginx.com/blog/rate-limiting-nginx/
+limit_req_zone $binary_remote_addr zone=sitelimit:10m rate=5r/s;
+
 upstream {{ application_name }}_wsgi_server {
   # fail_timeout=0 means we always retry an upstream even if it failed
   # to return a good HTTP response (in case the Unicorn master nukes a
@@ -115,6 +118,8 @@ server {
         if (-f {{ virtualenv_path }}/maintenance_on.html) {
             return 503;
         }
+
+        limit_req zone=sitelimit burst=10 nodelay;
 
         proxy_set_header X-Forwarded-For $proxy_add_x_forwarded_for;
         proxy_set_header X-Forwarded-Proto https;
