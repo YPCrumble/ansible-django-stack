@@ -2,11 +2,11 @@
 
 - name: Restart {{ celery_application_name }}
   community.general.supervisorctl: name={{ celery_application_name }} state=restarted
-  when: use_celery is defined
+  when: use_celery is true
 
 - name: Restart {{ celery_beat_application_name }}
   community.general.supervisorctl: name={{ celery_beat_application_name }} state=restarted
-  when: use_celery_beat is defined
+  when: use_celery_beat is true
 
 - name: Restart flower
   community.general.supervisorctl: name=flower state=restarted

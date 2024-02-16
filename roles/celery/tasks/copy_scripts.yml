@@ -6,6 +6,7 @@
         group={{ celery_group }}
         mode=0774
         state=directory
+  when: use_celery is true
 
 - name: Create the script file for {{ celery_application_name }}
   ansible.builtin.template: src={{ celery_template_file }}
@@ -13,6 +14,7 @@
             owner={{ celery_user }}
             group={{ celery_group }}
             mode=0755
+  when: use_celery is true
 
 - name: Create the script file for {{ celery_beat_application_name }}
   ansible.builtin.template: src={{ celery_beat_template_file }}
@@ -20,6 +22,7 @@
             owner={{ celery_user }}
             group={{ celery_group }}
             mode=0755
+  when: use_celery_beat is true
 
 - name: Create the flower script file
   ansible.builtin.template: src=flower_start.j2
@@ -27,4 +30,4 @@
             owner={{ celery_user }}
             group={{ celery_group }}
             mode=0755
-  when: use_flower is defined
+  when: use_flower is true
