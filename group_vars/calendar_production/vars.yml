@@ -51,7 +51,8 @@ rabbitmq_application_password: "{{ vault_rabbitmq_application_password }}"
 
 # Celery settings.
 celery_num_workers: 2
-use_celery: true
+use_celery: false
+use_celery_beat: false
 use_flower: false
 flower_admin_password: "{{ vault_flower_admin_password }}"
 
@@ -74,7 +75,7 @@ run_monthly_jobs: false
 run_jobs_bash_file: "run_jobs.sh"
 
 django_environment_extra:
-  # SENTRY_DSN: "{{ vault_sentry_dsn }}"
+  SENTRY_DSN: "{{ vault_sentry_dsn }}"
 
   SPARKPOST_API_KEY: "{{ vault_sparkpost_api_key }}"
   SPARKPOST_WEBHOOK_TOKEN: "{{ vault_sparkpost_webhook_token }}"
