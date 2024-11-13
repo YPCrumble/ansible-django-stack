@@ -53,7 +53,7 @@ rabbitmq_application_password: "{{ vault_rabbitmq_application_password }}"
 # Celery settings.
 celery_num_workers: 2
 use_celery: true
-use_celery_beat: true
+use_celery_beat: false
 use_flower: true
 flower_admin_password: "{{ vault_flower_admin_password }}"
 
@@ -86,4 +86,6 @@ django_environment_extra:
 
   DARK_SKY_API_KEY: 'f5a9c630af8dd65219e85a13eda60050'
 
-  SCRAPINGHUB_AUTOEXTRACT_KEY: '{{ vault_scrapinghub_autoextract_key }}'
+  # SCRAPINGHUB_AUTOEXTRACT_KEY: '{{ vault_scrapinghub_autoextract_key }}'
+
+  ZYTE_API_KEY: '{{ vault_zyte_api_key }}'
