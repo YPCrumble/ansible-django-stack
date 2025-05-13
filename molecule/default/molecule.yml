@@ -10,16 +10,14 @@ lint: |
   flake8
 platforms:
   - name: instance-jammy
+    image: ubuntu:jammy
     groups:
       - vagrant
-    image: ubuntu
-    image_version: jammy
     privileged: true
   - name: instance-focal
+    image: ubuntu:focal
     groups:
       - vagrant
-    image: ubuntu
-    image_version: focal
     privileged: true
 provisioner:
   name: ansible
