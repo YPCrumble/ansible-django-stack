@@ -43,6 +43,18 @@ jobs:
           echo "== After cleanup =="
           env | grep DOCKER || echo "No DOCKER_* env vars set."
 
+      - name: Check Python Docker client connection
+        run: |
+          python -c '
+          import docker
+          try:
+              client = docker.from_env()
+              print("✅ Connected to Docker. Version:", client.version())
+          except Exception as e:
+              print("❌ Failed to connect to Docker:")
+              print(e)
+          '
+
       - name: Test with molecule
         run: |
           molecule test
