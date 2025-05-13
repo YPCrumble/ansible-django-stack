@@ -23,6 +23,26 @@ jobs:
         run: |
           python3 -m pip install --upgrade pip
           python3 -m pip install -r requirements-dev.txt
+
+      - name: Inspect and fix Docker environment
+        run: |
+          echo "== Before cleanup =="
+          env | grep DOCKER || echo "No DOCKER_* env vars set."
+
+          if [ -n "$DOCKER_HOST" ]; then
+            echo "⚠️ DOCKER_HOST is set to: $DOCKER_HOST"
+            echo "Unsetting DOCKER_HOST to avoid http+docker error."
+            unset DOCKER_HOST
+          else
+            echo "✅ DOCKER_HOST is not set. All good."
+          fi
+
+          # Optionally set to standard Docker socket explicitly
+          export DOCKER_HOST=unix:///var/run/docker.sock
+
+          echo "== After cleanup =="
+          env | grep DOCKER || echo "No DOCKER_* env vars set."
+
       - name: Test with molecule
         run: |
           molecule test
