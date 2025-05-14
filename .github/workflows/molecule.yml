@@ -5,56 +5,45 @@ on:
   pull_request:
   schedule:
     - cron: '30 5 * * 0'
+
 jobs:
-  build:
+  molecule:
     runs-on: ubuntu-22.04
     strategy:
-      max-parallel: 4
       matrix:
         python-version: [3.9, "3.10", 3.11]
 
     steps:
       - uses: actions/checkout@v3
+
       - name: Set up Python ${{ matrix.python-version }}
         uses: actions/setup-python@v4
         with:
           python-version: ${{ matrix.python-version }}
+
       - name: Install dependencies
         run: |
           python3 -m pip install --upgrade pip
           python3 -m pip install -r requirements-dev.txt
 
-      - name: Inspect and fix Docker environment
+      - name: Ensure Docker is running and accessible
         run: |
-          echo "== Before cleanup =="
-          env | grep DOCKER || echo "No DOCKER_* env vars set."
+          docker info
+          docker ps
 
-          if [ -n "$DOCKER_HOST" ]; then
-            echo "⚠️ DOCKER_HOST is set to: $DOCKER_HOST"
-            echo "Unsetting DOCKER_HOST to avoid http+docker error."
-            unset DOCKER_HOST
-          else
-            echo "✅ DOCKER_HOST is not set. All good."
-          fi
-
-          # Optionally set to standard Docker socket explicitly
-          export DOCKER_HOST=unix:///var/run/docker.sock
-
-          echo "== After cleanup =="
-          env | grep DOCKER || echo "No DOCKER_* env vars set."
-
-      - name: Check Python Docker client connection
+      - name: Debug Docker Python SDK connectivity
         run: |
-          python -c '
+          python -c "
           import docker
           try:
               client = docker.from_env()
-              print("✅ Connected to Docker. Version:", client.version())
+              print('✅ Connected to Docker. Version:', client.version())
           except Exception as e:
-              print("❌ Failed to connect to Docker:")
-              print(e)
-          '
+              print('❌ Docker SDK error:', e)
+          "
 
-      - name: Test with molecule
+      - name: Run molecule test
+        env:
+          DOCKER_HOST: unix:///var/run/docker.sock  # Ensure correct scheme
         run: |
           molecule test
