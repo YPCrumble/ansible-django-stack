@@ -23,6 +23,14 @@ provisioner:
   name: ansible
   env:
     ANSIBLE_ROLES_PATH: ../../roles/
+  # Manually configure docker for Ansible
+  # See https://chatgpt.com/share/6824c524-3694-8006-af1a-1b578173e567
+  config_options:
+    defaults:
+      forks: 1
+      timeout: 30
+      # Disable async for localhost tasks
+      pipelining: true
   inventory:
     links:
       group_vars: ../../group_vars/
