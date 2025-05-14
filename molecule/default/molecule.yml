@@ -1,32 +1,7 @@
 ---
-dependency:
-  name: galaxy
 driver:
   name: docker
-lint: |
-  set -e
-  yamllint .
-  ansible-lint
-  flake8
 platforms:
-  - name: instance-jammy
-    groups:
-      - vagrant
-    image: ubuntu
-    image_version: jammy
-    privileged: true
-  - name: instance-focal
-    groups:
-      - vagrant
-    image: ubuntu
-    image_version: focal
-    privileged: true
-provisioner:
-  name: ansible
-  env:
-    ANSIBLE_ROLES_PATH: ../../roles/
-  inventory:
-    links:
-      group_vars: ../../group_vars/
-verifier:
-  name: ansible
+  - name: instance
+    image: quay.io/centos/centos:stream8
+    pre_build_image: true
