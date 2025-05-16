@@ -30,8 +30,9 @@
 
 - name: Upgrade pip
   ansible.builtin.pip:
-  name: pip
-  state: latest
+    virtualenv: "{{ virtualenv_path }}"
+    name: pip
+    state: latest
   tags:
     - packages
 
