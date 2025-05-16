@@ -27,6 +27,13 @@
   ansible.builtin.command: virtualenv -p {{ virtualenv_python_version }} {{ virtualenv_path }}
            creates={{ virtualenv_path }}/bin/activate
 
+- name: Upgrade pip
+  ansible.builtin.pip:
+  name: pip
+  state: latest
+  tags:
+    - packages
+
 - name: Ensure gunicorn and pycurl are installed in the virtualenv
   ansible.builtin.pip:
     virtualenv: "{{ virtualenv_path }}"
