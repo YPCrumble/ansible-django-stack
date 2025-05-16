@@ -4,6 +4,7 @@
   ansible.builtin.pip:
     name: virtualenv
     version: 20.24.6
+    extra_args: --break-system-packages
   tags: packages
 
 - name: Check if Supervisor exists
