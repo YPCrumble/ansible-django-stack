@@ -4,6 +4,7 @@
   ansible.builtin.pip:
     name: virtualenv
     version: 20.24.6
+    extra_args: --break-system-packages
   tags: packages
 
 - name: Check if Supervisor exists
@@ -25,7 +26,18 @@
 
 - name: Create the virtualenv
   ansible.builtin.command: virtualenv -p {{ virtualenv_python_version }} {{ virtualenv_path }}
-           creates={{ virtualenv_path }}/bin/activate
+  args:
+    creates: "{{ virtualenv_path }}/bin/activate"
+  tags:
+    - packages
+
+- name: Upgrade pip
+  ansible.builtin.pip:
+    virtualenv: "{{ virtualenv_path }}"
+    name: pip
+    state: latest
+  tags:
+    - packages
 
 - name: Ensure gunicorn and pycurl are installed in the virtualenv
   ansible.builtin.pip:
