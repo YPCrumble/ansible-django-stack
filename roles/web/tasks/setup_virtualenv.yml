@@ -26,7 +26,10 @@
 
 - name: Create the virtualenv
   ansible.builtin.command: virtualenv -p {{ virtualenv_python_version }} {{ virtualenv_path }}
-           creates={{ virtualenv_path }}/bin/activate
+  args:
+    creates: "{{ virtualenv_path }}/bin/activate"
+  tags:
+    - packages
 
 - name: Upgrade pip
   ansible.builtin.pip:
