@@ -15,11 +15,11 @@ platforms:
     image: ubuntu
     image_version: jammy
     privileged: true
-  - name: instance-focal
+  - name: instance-noble
     groups:
       - vagrant
     image: ubuntu
-    image_version: focal
+    image_version: noble
     privileged: true
 provisioner:
   name: ansible
