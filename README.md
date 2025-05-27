@@ -1,7 +1,12 @@
-ansible-django-stack
-====================
+# Ansible Django Stack
 
 ![Build Status](https://github.com/jcalazan/ansible-django-stack/actions/workflows/molecule.yml/badge.svg?branch=master)
+
+This is a complete Ansible playbook that will deploy a Django application to a
+server. It includes roles for setting up a PostgreSQL database, Nginx web
+server, Gunicorn application server, and Celery task queue.
+
+## Requirements
 
 Ansible Playbook designed for environments running a Django app.
 It can install and configure these applications that are commonly used in
@@ -25,6 +30,10 @@ trusted SSL certificates with [Let's Encrypt][lets-encrypt].
 **Tested with OS:** Ubuntu 24.04 LTS (64-bit), Ubuntu 22.04 LTS (64-bit).
 
 **Tested with Cloud Providers:** [Digital Ocean][digital-ocean], [AWS][aws], [Rackspace][rackspace]
+
+## Python Requirements
+
+This project requires **Python 3.12 or 3.13**. Earlier versions of Python are no longer supported.
 
 ## Getting Started
 
@@ -194,9 +203,6 @@ ansible-playbook --ssh-extra-args=-A -i production site.yml
 This is a little bit clunky but it does not restrict you from setting other
 SSH options if you need to.
 
-
-
-
 ## Security
 
 *NOTE: Do not run the Security role without understanding what it does.
@@ -318,14 +324,16 @@ The [Vagrantfile](Vagrantfile) uses the Ubuntu 22.04 LTS Vagrant box for a
 
 ### Changing the Python version used by your application
 
-Python 3 is used by default in the `virtualenv`. To use Python 2 instead, just
-override the `virtualenv_python_version` variable and set it to `python`.
+This project supports Python 3.12 and 3.13. Python 3.12 is used by default in the `virtualenv`. 
+To use Python 3.13 instead, override the `virtualenv_python_version` variable and set it to `python3.13`.
 
 It is possible to install other versions of Python from an
 [unofficial PPA by Felix Krull (see disclaimer)][deadsnakes].
 To use this PPA, override the `enable_deadsnakes_ppa` variable and set it to
 `yes`. Then the `virtualenv_python_version` variable can be set to the name of
-a Python package from this PPA, such as `python3.6`.
+a Python package from this PPA, such as `python3.12` or `python3.13`.
+
+**Note:** Only Python 3.12 and 3.13 are officially supported and tested.
 
 ### Changing the Python version used by Ansible
 
