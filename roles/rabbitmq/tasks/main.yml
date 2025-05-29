@@ -1,13 +1,5 @@
 ---
 
-- name: Install Erlang
-  ansible.builtin.apt:
-    update_cache: "{{ update_apt_cache }}"
-    state: present
-    name: erlang
-  tags:
-    - packages
-
 - name: Install RabbitMQ server
   ansible.builtin.apt:
     update_cache: "{{ update_apt_cache }}"
