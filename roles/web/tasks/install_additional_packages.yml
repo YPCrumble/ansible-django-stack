@@ -15,4 +15,3 @@
       - gnutls-dev
       - libpq-dev
       - "{{ virtualenv_python_version + '-dev' }}"
-      - "{{ virtualenv_python_version + '-distutils' }}"  # Required by Ubuntu 22.04
