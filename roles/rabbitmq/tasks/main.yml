@@ -1,8 +1,15 @@
 ---
 
+- name: Download the RabbitMQ release signing key
+  ansible.builtin.get_url:
+    url: https://github.com/rabbitmq/signing-keys/releases/download/3.0/rabbitmq-release-signing-key.asc
+    dest: /tmp/rabbitmq-release-signing-key.asc
+    mode: '0644'
+
 - name: Add the RabbitMQ release signing key to the apt trusted keys
-  ansible.builtin.apt_key: url=https://github.com/rabbitmq/signing-keys/releases/download/3.0/rabbitmq-release-signing-key.asc
-           state=present
+  ansible.builtin.apt_key:
+    file: /tmp/rabbitmq-release-signing-key.asc
+    state: present
 
 - name: Add the RabbitMQ server repository to the apt sources list
   ansible.builtin.apt_repository: repo='deb https://deb1.rabbitmq.com/rabbitmq-server/ubuntu/{{ ansible_distribution_release }} {{ ansible_distribution_release }} main'
