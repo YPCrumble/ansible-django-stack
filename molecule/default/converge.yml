@@ -15,6 +15,9 @@
   vars:
     update_apt_cache: true
     force_ssh_authentication: false
+    server_user: "root"
+    nginx_use_letsencrypt: false
+    create_swap_file: false
 
   tasks:
     - name: Install Python3
