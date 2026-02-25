@@ -18,6 +18,7 @@
     server_user: "root"
     nginx_use_letsencrypt: false
     create_swap_file: false
+    upgrade_system_pip: false
 
   tasks:
     - name: Install Python3

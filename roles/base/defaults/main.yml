@@ -6,6 +6,7 @@ server_user: root
 
 base_python_package: "{{ ansible_python_interpreter | default('/usr/bin/python') | basename }}"
 
-create_swap_file: false
+create_swap_file: true
+upgrade_system_pip: true
 swap_file_path: /swapfile
 swap_file_size_kb: 512
