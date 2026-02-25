@@ -12,14 +12,12 @@ platforms:
   - name: instance-jammy
     groups:
       - vagrant
-    image: ubuntu
-    image_version: jammy
+    image: ubuntu:jammy
     privileged: true
   - name: instance-focal
     groups:
       - vagrant
-    image: ubuntu
-    image_version: focal
+    image: ubuntu:focal
     privileged: true
 provisioner:
   name: ansible
