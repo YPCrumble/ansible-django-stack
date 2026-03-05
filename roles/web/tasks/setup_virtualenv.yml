@@ -1,5 +1,7 @@
 ---
 
+# TODO: Once Python 3.10 (Jammy) is no longer supported, remove the pip help
+# check and pass --break-system-packages unconditionally.
 - name: Check if pip supports --break-system-packages
   ansible.builtin.command: pip3 install --help
   register: pip_help_output
