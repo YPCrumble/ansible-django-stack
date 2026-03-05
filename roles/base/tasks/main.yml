@@ -28,3 +28,10 @@
   tags:
     - packages
     - packages.security
+
+- name: Upgrade pip
+  ansible.builtin.pip: name=pip state=latest
+  when: upgrade_system_pip
+  tags:
+    - packages
+    - skip_ansible_lint

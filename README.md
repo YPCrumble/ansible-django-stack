@@ -343,8 +343,8 @@ allows a machine without Python 3 to be provisioned.
 
 ### Creating a swap file
 
-By default, the playbook won't create a swap file. To create/enable swap,
-simply change the values in [roles/base/defaults/main.yml](roles/base/defaults/main.yml).
+By default, the playbook will create a swap file. To disable swap,
+set `create_swap_file: false` in [roles/base/defaults/main.yml](roles/base/defaults/main.yml).
 
 You can also override these values in the main playbook, for example:
 
