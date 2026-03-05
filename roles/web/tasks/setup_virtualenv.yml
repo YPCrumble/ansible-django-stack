@@ -1,10 +1,15 @@
 ---
 
+- name: Check if pip supports --break-system-packages
+  ansible.builtin.command: pip3 install --help
+  register: pip_help_output
+  changed_when: false
+
 - name: Install virtualenv
   ansible.builtin.pip:
     name: virtualenv
     version: 20.24.6
-    extra_args: --break-system-packages
+    extra_args: "{{ '--break-system-packages' if 'break-system-packages' in pip_help_output.stdout else omit }}"
   tags: packages
 
 - name: Check if Supervisor exists
